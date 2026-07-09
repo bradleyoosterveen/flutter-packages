@@ -1,0 +1,41 @@
+name: flint_ui
+resolution: workspace
+version: 0.0.0
+environment:
+  sdk: ^3.12.2
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: 2.3.0
+  flutter_animate: 4.5.2
+dev_dependencies:
+  test: 1.31.0
+  build_runner: 2.15.0
+  flutter_gen_runner: 5.14.1
+flutter:
+  generate: true
+  uses-material-design: false
+  assets:
+  - assets/icons/
+  - assets/fonts/
+  fonts:
+  - family: WorkSans
+    fonts:
+    - asset: assets/fonts/WorkSans-Thin.ttf
+      weight: 100
+    - asset: assets/fonts/WorkSans-ExtraLight.ttf
+      weight: 200
+    - asset: assets/fonts/WorkSans-Light.ttf
+      weight: 300
+    - asset: assets/fonts/WorkSans-Regular.ttf
+      weight: 400
+    - asset: assets/fonts/WorkSans-Medium.ttf
+      weight: 500
+    - asset: assets/fonts/WorkSans-SemiBold.ttf
+      weight: 600
+    - asset: assets/fonts/WorkSans-Bold.ttf
+      weight: 700
+    - asset: assets/fonts/WorkSans-ExtraBold.ttf
+      weight: 800
+    - asset: assets/fonts/WorkSans-Black.ttf
+      weight: 900

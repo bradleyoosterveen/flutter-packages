@@ -1,0 +1,10 @@
+index_generator:
+  include:
+    - 'src/**'
+  exclude:
+    - '**.*.dart'
+    - 'src/_*'
+
+  libraries:
+    - directory_path: packages/flint_ui/lib
+      file_name: flint_ui

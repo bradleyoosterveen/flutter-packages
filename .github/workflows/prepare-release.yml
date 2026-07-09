@@ -1,0 +1,77 @@
+name: Bump version and prepare release
+
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: "The package to release"
+        required: true
+        type: choice
+        options:
+          - flint_ui
+      part:
+        description: "The part of the version to bump"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v1
+        id: app
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+      - uses: actions/checkout@v5
+        with:
+          token: ${{ steps.app.outputs.token }}
+          fetch-depth: 0
+      - run: |
+          python -m venv _scripts/venv
+          source _scripts/venv/bin/activate
+          pip install -r _scripts/requirements.txt
+          python _scripts/bump_package_version.py --package "${{ inputs.package }}" --${{ inputs.part }}
+      - id: package-version
+        uses: ./.github/actions/get-package-version
+        with:
+          package_name: ${{ inputs.package }}
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add packages/${{ inputs.package }}/pubspec.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Bump ${{ inputs.package }} version to ${{ steps.package-version.outputs.version }}"
+          git push origin HEAD:${GITHUB_REF#refs/heads/}
+
+  create-release:
+    needs: [bump]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - id: package-version
+        uses: ./.github/actions/get-package-version
+        with:
+          package_name: ${{ inputs.package }}
+      - run: |
+          tag_name="${{ inputs.package }}-${{ steps.package-version.outputs.version }}"
+          git tag "$tag_name"
+          git push origin "$tag_name"
+          gh release create "$tag_name" --title "$tag_name" --latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
