@@ -13,8 +13,8 @@ jobs:
 
       - uses: ./.github/actions/setup-flutter
 
-      - run: flutter pub get
+      - run: dart pub global activate melos
 
-      - run: dart run build_runner build
+      - run: dart run melos bootstrap
 
-      - run: flutter test lib
+      - run: dart run melos test --no-select

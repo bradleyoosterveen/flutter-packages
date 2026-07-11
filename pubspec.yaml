@@ -14,24 +14,21 @@ melos:
     intellij:
       enabled: false
   scripts:
-    bootstrap:
-      description: Install dependencies for all packages
-      run: melos bootstrap
-
     create:package:
       description: Create a new package in the workspace
-      run: fvm dart create -t package packages/ui
+      run: dart create -t package packages/ui
 
     test:
       description: Run tests in all packages
-      exec: fvm dart test --reporter=expanded
+      exec: dart test --reporter=expanded
       packageFilters:
-        fileExists: test
+        dirExists:
+          - 'test'
 
     generate:indexes:
       description: Run index_generator for all packages
-      exec: fvm dart run index_generator
+      exec: dart run index_generator
 
     format:
       description: Format and fix all packages
-      exec: fvm dart format . && fvm dart fix --apply
+      exec: dart format . && dart fix --apply
