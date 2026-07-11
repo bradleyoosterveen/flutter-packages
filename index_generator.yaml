@@ -6,5 +6,7 @@ index_generator:
     - 'src/_*'
 
   libraries:
+    - directory_path: packages/async_keyed_cache/lib
+      file_name: async_keyed_cache
     - directory_path: packages/flint_ui/lib
       file_name: flint_ui
