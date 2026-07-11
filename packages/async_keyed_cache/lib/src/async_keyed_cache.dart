@@ -13,7 +13,8 @@ class AsyncKeyedCache {
   /// Subsequent calls with the same [key] while the original action is
   /// still in progress will receive the same `Future` instance.
   ///
-  /// - [key]: A unique key to identify the action.
+  /// - [key]: A unique key to identify the action. Do not reuse the same key for
+  ///   different `T` types, as it may lead to unexpected behavior.
   /// - [action]: The asynchronous function to execute, which returns a `Future<T>`.
   /// - [duration]: The `Duration` for which the result should be cached.
   ///   - If `Duration > zero`, the result is cached for the specified duration.
