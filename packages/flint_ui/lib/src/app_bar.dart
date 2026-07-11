@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 class FlintUiAppBar extends StatelessWidget {
   const FlintUiAppBar({
@@ -71,7 +71,8 @@ class FlintUiAppBar extends StatelessWidget {
                     scale: onClose != null ? 1 : 0,
                     child: FlintUiButton.square(
                       style: (_) => context.themeData.buttonStyles.ghost,
-                      child: FlintUiIcon.chevronLeft(),
+                      onPressed: onClose,
+                      child: FlintUiIcon.x(),
                     ),
                   ),
                 ],
