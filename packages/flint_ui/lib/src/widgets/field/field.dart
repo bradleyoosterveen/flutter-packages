@@ -10,10 +10,28 @@ class FlintUiField extends StatefulWidget {
     this.hasError = false,
     this.obscure = false,
     this.placeholderText,
+    this.minLines = 1,
+    this.maxLines = 1,
     super.key,
   });
 
   factory FlintUiField.text({
+    TextEditingController? controller,
+    FocusNode? focusNode,
+    bool hasError = false,
+    String? placeholderText,
+    String? textInputType,
+    Key? key,
+  }) => FlintUiField._(
+    controller: controller,
+    focusNode: focusNode,
+    hasError: hasError,
+    obscure: false,
+    placeholderText: placeholderText,
+    key: key,
+  );
+
+  factory FlintUiField.multiline({
     TextEditingController? controller,
     FocusNode? focusNode,
     bool hasError = false,
@@ -25,6 +43,8 @@ class FlintUiField extends StatefulWidget {
     hasError: hasError,
     obscure: false,
     placeholderText: placeholderText,
+    minLines: 2,
+    maxLines: null,
     key: key,
   );
 
@@ -48,6 +68,8 @@ class FlintUiField extends StatefulWidget {
   final bool hasError;
   final bool obscure;
   final String? placeholderText;
+  final int? minLines;
+  final int? maxLines;
 
   @override
   State<FlintUiField> createState() => _FlintUiFieldState();
@@ -71,7 +93,7 @@ class _FlintUiFieldState extends State<FlintUiField> {
     curve: _animationCurve,
     decoration: BoxDecoration(
       color: context.themeData.fieldStyles.primary.backgroundColor.color,
-      borderRadius: BorderRadius.circular(
+      borderRadius: .circular(
         context.themeData.fieldStyles.primary.borderRadius,
       ),
       border: .all(width: 1, color: _borderColor.color),
@@ -81,14 +103,14 @@ class _FlintUiFieldState extends State<FlintUiField> {
         Expanded(
           child: IntrinsicHeight(
             child: TextField(
-              expands: true,
-              maxLines: null,
+              minLines: widget.minLines,
+              maxLines: widget.maxLines,
               obscureText: widget.obscure,
               obscuringCharacter: _obscureCharacter,
               focusNode: _focusNode,
               controller: widget.controller,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: .symmetric(
                   horizontal: context.themeData.spacing.lg,
                   vertical: context.themeData.spacing.md,
                 ),
@@ -101,8 +123,8 @@ class _FlintUiFieldState extends State<FlintUiField> {
                     .toTextStyle(),
               ),
               style: context.themeData.textStyles.labelLarge.toTextStyle(),
-              textAlignVertical: TextAlignVertical.top,
-              textAlign: TextAlign.start,
+              textAlignVertical: .top,
+              textAlign: .start,
               onTapOutside: (_) => _focusNode.unfocus(),
             ),
           ),

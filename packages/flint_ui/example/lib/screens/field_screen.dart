@@ -13,7 +13,17 @@ class FieldScreen extends StatelessWidget {
     header: FlintUiAppBar(titleText: 'UiField', onGoBack: Navigator.of(context).pop),
     body: FlintUiFlex.column(
       divider: FlintUiGap.column(context.themeData.spacing.sm),
-      children: [FlintUiField.text(hasError: true)],
+      children: [
+        FlintUiField.text(
+          placeholderText: 'Field (text)',
+        ),
+        FlintUiField.multiline(
+          placeholderText: 'Field (multiline)',
+        ),
+        FlintUiField.password(
+          placeholderText: 'Field (password)',
+        ),
+      ],
     ),
   );
 }
