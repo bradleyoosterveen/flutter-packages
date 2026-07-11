@@ -8,6 +8,7 @@ on:
         required: true
         type: choice
         options:
+          - async_keyed_cache
           - flint_ui
       part:
         description: "The part of the version to bump"
