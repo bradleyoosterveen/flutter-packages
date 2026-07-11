@@ -1,0 +1,20 @@
+name: Test dart code
+
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup-flutter
+
+      - run: flutter pub get
+
+      - run: dart run build_runner build
+
+      - run: flutter test lib
