@@ -1,7 +1,7 @@
+import 'package:flint_ui/flint_ui.dart';
+import 'package:flint_ui/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flint_ui/gen/assets.gen.dart';
-import 'package:flint_ui/flint_ui.dart';
 
 part 'icon.style.dart';
 
@@ -63,6 +63,8 @@ class FlintUiIcon extends StatelessWidget {
   factory FlintUiIcon.search({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSearch24Regular, style);
 
+  factory FlintUiIcon.settings({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
+      FlintUiIcon._(Assets.icons.lucideSettings24Regular, style);
   factory FlintUiIcon.sparkles({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSparkles24Regular, style);
 
