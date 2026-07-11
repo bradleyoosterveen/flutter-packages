@@ -36,8 +36,8 @@ class AsyncKeyedCache {
     try {
       final result = await action();
       completer.complete(result);
-    } catch (e) {
-      completer.completeError(e);
+    } catch (e, st) {
+      completer.completeError(e, st);
     }
 
     if (duration > Duration.zero) {
