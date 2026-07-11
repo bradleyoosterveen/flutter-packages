@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
 
 class FlintUiTypographyThemeData {
-  static final String _fontFamily = 'packages/ui/WorkSans';
+  static final String _fontFamily = 'packages/flint_ui/WorkSans';
 
   static final TextStyle _baseTextStyle = TextStyle(
     fontFamily: _fontFamily,

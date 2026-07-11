@@ -83,7 +83,7 @@ class FlintUiIcon extends StatelessWidget {
       width: resolvedStyle.size,
       height: resolvedStyle.size,
       colorFilter: .mode(resolvedStyle.color.color, BlendMode.srcIn),
-      package: 'ui',
+      package: 'flint_ui',
     );
   }
 }
