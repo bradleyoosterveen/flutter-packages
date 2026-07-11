@@ -112,6 +112,10 @@ class $AssetsIconsGen {
   String get lucideSearch24Regular =>
       'assets/icons/lucide--search-24-regular.svg';
 
+  /// File path: assets/icons/lucide--settings-24-regular.svg
+  String get lucideSettings24Regular =>
+      'assets/icons/lucide--settings-24-regular.svg';
+
   /// File path: assets/icons/lucide--sparkles-24-regular.svg
   String get lucideSparkles24Regular =>
       'assets/icons/lucide--sparkles-24-regular.svg';
@@ -135,6 +139,7 @@ class $AssetsIconsGen {
     lucideLoaderCircle24Regular,
     lucideLogOut24Regular,
     lucideSearch24Regular,
+    lucideSettings24Regular,
     lucideSparkles24Regular,
     lucideX24Regular,
   ];
