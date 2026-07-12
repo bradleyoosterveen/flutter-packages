@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 part 'scaffold.style.dart';
 
@@ -97,7 +97,7 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
                         fillOverscroll: false,
                         child: FlintUiFlex.column(
                           crossAxisAlignment: .start,
-                          divider: FlintUiGap.column(context.themeData.spacing.lg),
+                          divider: FlintUiGap.column(context.themeData.spacing.sm),
                           children: [
                             if (header != null) ...[_header(header)],
                             Expanded(
