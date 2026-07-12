@@ -13,6 +13,11 @@ class FlintUiIcon extends StatelessWidget {
 
   const FlintUiIcon._(this.icon, [this.style = _defaultStyleBuilder]);
 
+  factory FlintUiIcon({
+    required String icon,
+    FlintUiIconStyleBuilder style = _defaultStyleBuilder,
+  }) => FlintUiIcon._(icon, style);
+
   factory FlintUiIcon.chevronLeft({
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideChevronLeft24Regular, style);
