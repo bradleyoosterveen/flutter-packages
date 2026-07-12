@@ -1,6 +1,6 @@
+import 'package:flint_ui/flint_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flint_ui/flint_ui.dart';
 
 part 'theme_data.dark.dart';
 part 'theme_data.light.dart';
@@ -9,7 +9,7 @@ class FlintUiThemeData with Diagnosticable {
   static final FlintUiSpacing _spacing = FlintUiSpacing.base();
   static final double _baseButtonBorderRadius = 99;
   static final double _baseCardBorderRadius = 16;
-  static final String _baseFontFamily = 'packages/ui/WorkSans';
+  static final String _baseFontFamily = 'packages/flint_ui/WorkSans';
 
   static FlintUiTextStyle _baseTextStyle() => FlintUiTextStyle(
     fontFamily: _baseFontFamily,
