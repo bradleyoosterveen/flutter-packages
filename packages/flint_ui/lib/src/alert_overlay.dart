@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flint_ui/flint_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flint_ui/flint_ui.dart';
 
 class FlintUiAlertOverlayController extends ChangeNotifier {
   FlintUiAlertState? _state;
@@ -100,13 +100,13 @@ class _FlintUiAlertOverlayState extends State<FlintUiAlertOverlay> {
       children: [
         widget.child,
         Align(
-          alignment: Alignment.bottomCenter,
+          alignment: Alignment.topCenter,
           child: Builder(
             builder: (context) {
               final alert = FlintUiAlertOverlayNotifier.of(context).state;
 
               return AnimatedSwitcher(
-                duration: 200.milliseconds,
+                duration: 400.milliseconds,
                 switchInCurve: Curves.easeInOutExpo,
                 switchOutCurve: Curves.easeInOutExpo,
                 transitionBuilder: (Widget child, Animation<double> animation) => SlideTransition(
@@ -114,16 +114,21 @@ class _FlintUiAlertOverlayState extends State<FlintUiAlertOverlay> {
                     begin: const Offset(-1.0, 0),
                     end: Offset.zero,
                   ).animate(animation),
-                  child: child,
+                  child: FadeTransition(
+                    opacity: Tween<double>(
+                      begin: 0,
+                      end: 1,
+                    ).animate(animation),
+                    child: child,
+                  ),
                 ),
                 child: alert != null
                     ? SafeArea(
                         key: ValueKey(alert.concurrencyStamp),
                         child: Padding(
-                          padding: .only(
-                            left: context.themeData.spacing.md,
-                            right: context.themeData.spacing.md,
-                            bottom: context.themeData.spacing.xl,
+                          padding: .symmetric(
+                            horizontal: context.themeData.spacing.md,
+                            vertical: context.themeData.spacing.lg,
                           ),
                           child: Column(
                             mainAxisSize: .min,
