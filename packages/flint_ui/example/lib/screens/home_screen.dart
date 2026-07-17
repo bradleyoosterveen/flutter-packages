@@ -1,14 +1,14 @@
-import 'package:example/screens/alert_screen.dart';
-import 'package:example/screens/button_screen.dart';
-import 'package:example/screens/card_screen.dart';
-import 'package:example/screens/carousel_screen.dart';
-import 'package:example/screens/field_screen.dart';
-import 'package:example/screens/informational_layout_screen.dart';
-import 'package:example/screens/scaffold_screen.dart';
-import 'package:example/screens/text_screen.dart';
-import 'package:example/screens/url_preview_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:example/screens/examples/alert_screen.dart';
+import 'package:example/screens/examples/button_screen.dart';
+import 'package:example/screens/examples/card_screen.dart';
+import 'package:example/screens/examples/carousel_screen.dart';
+import 'package:example/screens/examples/field_screen.dart';
+import 'package:example/screens/examples/informational_layout_screen.dart';
+import 'package:example/screens/examples/scaffold_screen.dart';
+import 'package:example/screens/examples/text_screen.dart';
+import 'package:example/screens/examples/url_preview_screen.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,6 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
             FlintUiCard(
               child: FlintUiText('Scaffold (body only)'),
               onPressed: () => ScaffoldScreen.push(context, .bodyOnly),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold (centered body)'),
+              onPressed: () => ScaffoldScreen.push(context, .centeredBody),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold (top aligned body)'),
+              onPressed: () => ScaffoldScreen.push(context, .topAlignedBody),
             ),
             FlintUiCard(
               child: FlintUiText('Scaffold (app bar and body)'),
