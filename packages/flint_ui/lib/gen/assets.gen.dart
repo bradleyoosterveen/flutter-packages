@@ -56,6 +56,13 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/lucide--bell-24-regular.svg
+  String get lucideBell24Regular => 'assets/icons/lucide--bell-24-regular.svg';
+
+  /// File path: assets/icons/lucide--book-user-24-regular.svg
+  String get lucideBookUser24Regular =>
+      'assets/icons/lucide--book-user-24-regular.svg';
+
   /// File path: assets/icons/lucide--check-24-regular.svg
   String get lucideCheck24Regular =>
       'assets/icons/lucide--check-24-regular.svg';
@@ -120,11 +127,16 @@ class $AssetsIconsGen {
   String get lucideSparkles24Regular =>
       'assets/icons/lucide--sparkles-24-regular.svg';
 
+  /// File path: assets/icons/lucide--user-24-regular.svg
+  String get lucideUser24Regular => 'assets/icons/lucide--user-24-regular.svg';
+
   /// File path: assets/icons/lucide--x-24-regular.svg
   String get lucideX24Regular => 'assets/icons/lucide--x-24-regular.svg';
 
   /// List of all assets
   List<String> get values => [
+    lucideBell24Regular,
+    lucideBookUser24Regular,
     lucideCheck24Regular,
     lucideChevronLeft24Regular,
     lucideCircleAlert24Regular,
@@ -141,6 +153,7 @@ class $AssetsIconsGen {
     lucideSearch24Regular,
     lucideSettings24Regular,
     lucideSparkles24Regular,
+    lucideUser24Regular,
     lucideX24Regular,
   ];
 }
