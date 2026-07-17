@@ -18,6 +18,14 @@ class FlintUiIcon extends StatelessWidget {
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(icon, style);
 
+  factory FlintUiIcon.bell({
+    FlintUiIconStyleBuilder style = _defaultStyleBuilder,
+  }) => FlintUiIcon._(Assets.icons.lucideBell24Regular, style);
+
+  factory FlintUiIcon.bookUser({
+    FlintUiIconStyleBuilder style = _defaultStyleBuilder,
+  }) => FlintUiIcon._(Assets.icons.lucideBookUser24Regular, style);
+
   factory FlintUiIcon.chevronLeft({
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideChevronLeft24Regular, style);
@@ -65,13 +73,18 @@ class FlintUiIcon extends StatelessWidget {
 
   factory FlintUiIcon.logOut({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideLogOut24Regular, style);
+
   factory FlintUiIcon.search({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSearch24Regular, style);
 
   factory FlintUiIcon.settings({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSettings24Regular, style);
+
   factory FlintUiIcon.sparkles({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSparkles24Regular, style);
+
+  factory FlintUiIcon.user({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
+      FlintUiIcon._(Assets.icons.lucideUser24Regular, style);
 
   factory FlintUiIcon.x({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideX24Regular, style);
