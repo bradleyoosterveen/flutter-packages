@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 enum ScaffoldScreenVariant {
   bodyOnly,
+  centeredBody,
+  topAlignedBody,
   appBarAndBody,
   appBarAndBodyAndActionBar,
   appBarAndBodyAndBottomNavigationBar,
@@ -31,6 +33,14 @@ class ScaffoldScreen extends StatelessWidget {
           ...List.generate(40, (i) => FlintUiText('This is only the body.')),
         ],
       ),
+    ),
+    .centeredBody => FlintUiScaffold(
+      body: Center(
+        child: FlintUiText('Centered'),
+      ),
+    ),
+    .topAlignedBody => FlintUiScaffold(
+      body: FlintUiText('Centered'),
     ),
     .appBarAndBody => FlintUiScaffold(
       header: FlintUiAppBar(

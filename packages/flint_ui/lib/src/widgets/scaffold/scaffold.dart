@@ -11,7 +11,6 @@ class FlintUiScaffold extends StatefulWidget {
     this.header,
     this.floatingHeader,
     this.footer,
-    this.onRefresh,
     this.style = _defaultStyleBuilder,
     super.key,
   });
@@ -20,7 +19,6 @@ class FlintUiScaffold extends StatefulWidget {
   final Widget? header;
   final Widget? floatingHeader;
   final Widget? footer;
-  final Future<void> Function()? onRefresh;
   final FlintUiScaffoldStyle Function(FlintUiScaffoldStyle style) style;
 
   @override
@@ -78,53 +76,46 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          _maybeWrapInRefreshIndicator(
-            child: FlintUiFlex.column(
-              mainAxisSize: .min,
-              children: [
-                Flexible(
-                  child: CustomScrollView(
-                    controller: _scrollController,
-                    clipBehavior: Clip.none,
-                    physics: widget.onRefresh != null
-                        ? const ClampingScrollPhysics(
-                            parent: AlwaysScrollableScrollPhysics(),
-                          )
-                        : const ClampingScrollPhysics(),
-                    slivers: [
-                      SliverFillRemaining(
-                        hasScrollBody: false,
-                        fillOverscroll: false,
-                        child: FlintUiFlex.column(
-                          crossAxisAlignment: .start,
-                          divider: FlintUiGap.column(context.themeData.spacing.sm),
-                          children: [
-                            if (header != null) ...[_header(header)],
-                            Expanded(
-                              child: SafeArea(
-                                top: header == null,
-                                bottom: footer == null,
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: resolvedStyle.horizontalInset,
-                                  ),
-                                  child: body,
-                                ),
+          Positioned.fill(
+            child: LayoutBuilder(
+              builder: (context, constraints) => SingleChildScrollView(
+                controller: _scrollController,
+                child: IntrinsicHeight(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: constraints.minHeight,
+                    ),
+                    child: FlintUiFlex.column(
+                      crossAxisAlignment: .stretch,
+                      divider: FlintUiGap.column(context.themeData.spacing.sm),
+                      mainAxisSize: .max,
+                      children: [
+                        if (header != null) ...[
+                          _header(header),
+                        ],
+                        Expanded(
+                          child: SafeArea(
+                            top: header == null,
+                            bottom: footer == null,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: resolvedStyle.horizontalInset,
                               ),
+                              child: body,
                             ),
-                            if (footer != null) ...[
-                              Visibility.maintain(
-                                visible: false,
-                                child: _footer(footer),
-                              ),
-                            ],
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                        if (footer != null) ...[
+                          Visibility.maintain(
+                            visible: false,
+                            child: _footer(footer),
+                          ),
+                        ],
+                      ],
+                    ),
                   ),
                 ),
-              ],
+              ),
             ),
           ),
           if (footer != null) ...[
@@ -170,11 +161,4 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
       ),
     ),
   );
-
-  Widget _maybeWrapInRefreshIndicator({required Widget child}) => widget.onRefresh != null
-      ? RefreshIndicator(
-          onRefresh: widget.onRefresh ?? () => .value(),
-          child: child,
-        )
-      : child;
 }
