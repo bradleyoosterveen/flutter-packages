@@ -57,6 +57,10 @@ class FlintUiIcon extends StatelessWidget {
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideClipboardPaste24Regular, style);
 
+  factory FlintUiIcon.ellipsisVertical({
+    FlintUiIconStyleBuilder style = _defaultStyleBuilder,
+  }) => FlintUiIcon._(Assets.icons.lucideEllipsisVertical24Regular, style);
+
   factory FlintUiIcon.externalLink({
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideExternalLink24Regular, style);

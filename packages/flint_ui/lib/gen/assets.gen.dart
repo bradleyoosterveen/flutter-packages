@@ -95,6 +95,10 @@ class $AssetsIconsGen {
   String get lucideClipboardPaste24Regular =>
       'assets/icons/lucide--clipboard-paste-24-regular.svg';
 
+  /// File path: assets/icons/lucide--ellipsis-vertical-24-regular.svg
+  String get lucideEllipsisVertical24Regular =>
+      'assets/icons/lucide--ellipsis-vertical-24-regular.svg';
+
   /// File path: assets/icons/lucide--external-link-24-regular.svg
   String get lucideExternalLink24Regular =>
       'assets/icons/lucide--external-link-24-regular.svg';
@@ -145,6 +149,7 @@ class $AssetsIconsGen {
     lucideCircleSlash24Regular,
     lucideClipboardCopy24Regular,
     lucideClipboardPaste24Regular,
+    lucideEllipsisVertical24Regular,
     lucideExternalLink24Regular,
     lucideHouse24Regular,
     lucideLibrary24Regular,
