@@ -30,6 +30,10 @@ class FlintUiIcon extends StatelessWidget {
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideChevronLeft24Regular, style);
 
+  factory FlintUiIcon.chevronRight({
+    FlintUiIconStyleBuilder style = _defaultStyleBuilder,
+  }) => FlintUiIcon._(Assets.icons.lucideChevronRight24Regular, style);
+
   factory FlintUiIcon.circleAlert({
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
   }) => FlintUiIcon._(Assets.icons.lucideCircleAlert24Regular, style);
