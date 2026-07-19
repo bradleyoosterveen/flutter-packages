@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 class CardScreen extends StatelessWidget {
   const CardScreen({super.key});
@@ -15,6 +15,11 @@ class CardScreen extends StatelessWidget {
       divider: FlintUiGap.column(context.themeData.spacing.sm),
       crossAxisAlignment: .stretch,
       children: [
+        FlintUiCard(
+          style: (_) => context.themeData.cardStyles.filled,
+          size: .extraSmall,
+          child: Text('filled extra small'),
+        ),
         FlintUiCard(
           style: (_) => context.themeData.cardStyles.filled,
           size: .small,

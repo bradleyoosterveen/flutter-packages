@@ -1,5 +1,5 @@
-import 'package:flutter/widgets.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/widgets.dart';
 
 part 'card.style.dart';
 
@@ -21,6 +21,10 @@ class FlintUiCard extends StatelessWidget {
   final VoidCallback onPressed;
 
   EdgeInsets _padding(BuildContext context) => switch (size) {
+    FlintUiCardSize.extraSmall => EdgeInsets.symmetric(
+      vertical: context.themeData.spacing.xs,
+      horizontal: context.themeData.spacing.sm,
+    ),
     FlintUiCardSize.small => EdgeInsets.symmetric(
       vertical: context.themeData.spacing.sm,
       horizontal: context.themeData.spacing.md,
@@ -59,4 +63,4 @@ class FlintUiCard extends StatelessWidget {
   }
 }
 
-enum FlintUiCardSize { small, medium, large }
+enum FlintUiCardSize { extraSmall, small, medium, large }
