@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 part 'bottom_navigation_bar.style.dart';
 
@@ -53,7 +53,7 @@ class FlintUiBottomNavigationBar extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: context.themeData.spacing.md,
+        horizontal: context.themeData.spacing.xs,
         vertical: context.themeData.spacing.sm,
       ),
       child: SafeArea(

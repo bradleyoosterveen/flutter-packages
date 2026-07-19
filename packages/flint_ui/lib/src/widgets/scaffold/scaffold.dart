@@ -152,7 +152,7 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
   Widget _header(Widget header) => SafeArea(
     bottom: false,
     child: Padding(
-      padding: .symmetric(horizontal: context.themeData.spacing.xs),
+      padding: .symmetric(horizontal: context.themeData.spacing.md),
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minHeight: MediaQuery.of(context).size.height * 0.08,
