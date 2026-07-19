@@ -121,7 +121,7 @@ class FlintUiThemeData with Diagnosticable {
   final FlintUiAlertStyles alertStyles;
   final FlintUiIconStyles iconStyles;
   final FlintUiFieldStyles fieldStyles;
-  final UiBottomNavigationBarStyles bottomNavigationBarStyles;
+  final FlintUiBottomNavigationBarStyles bottomNavigationBarStyles;
   final FlintUiBottomNavigationBarItemStyles bottomNavigationBarItemStyles;
 
   const FlintUiThemeData._({
@@ -146,6 +146,11 @@ class FlintUiThemeData with Diagnosticable {
       .dark => DarkTheme._data(context),
     };
   }
+
+  factory FlintUiThemeData.fromBrightness(BuildContext context, Brightness brightness) => switch (brightness) {
+    .light => LightTheme._data(context),
+    .dark => DarkTheme._data(context),
+  };
 
   ThemeData toMaterialTheme() => ThemeData(
     useMaterial3: true,

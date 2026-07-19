@@ -92,8 +92,8 @@ class FlintUiBottomNavigationBarItemStyles {
   const FlintUiBottomNavigationBarItemStyles({required this.primary});
 }
 
-class UiBottomNavigationBarStyles {
+class FlintUiBottomNavigationBarStyles {
   final FlintUiBottomNavigationBarStyle primary;
 
-  const UiBottomNavigationBarStyles({required this.primary});
+  const FlintUiBottomNavigationBarStyles({required this.primary});
 }

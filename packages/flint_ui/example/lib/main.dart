@@ -1,6 +1,6 @@
 import 'package:example/screens/home_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const App());
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = FlintUiThemeData.fromPlatformBrightness(context);
+    final themeData = FlintUiThemeData.fromBrightness(context, .light);
 
     return MaterialApp(
       theme: themeData.toMaterialTheme(),

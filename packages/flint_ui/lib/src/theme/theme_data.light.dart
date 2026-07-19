@@ -7,46 +7,46 @@ extension LightTheme on FlintUiThemeData {
     return FlintUiThemeData._(
       brightness: .light,
       spacing: FlintUiThemeData._spacing,
-      buttonStyles: .new(
-        primary: .new(
+      buttonStyles: FlintUiButtonStyles(
+        primary: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.black,
           foregroundColor: FlintUiColors.white,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
-        secondary: .new(
+        secondary: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.black.alpha10,
           foregroundColor: FlintUiColors.black,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
-        outline: .new(
+        outline: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.transparent,
           foregroundColor: FlintUiColors.black,
           borderColor: FlintUiColors.black.alpha10,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
-        ghost: .new(
+        ghost: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.transparent,
           foregroundColor: FlintUiColors.black,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
       ),
-      cardStyles: .new(
-        filled: .new(
+      cardStyles: FlintUiCardStyles(
+        filled: FlintUiCardStyle(
           backgroundColor: FlintUiColors.black.alpha05,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseCardBorderRadius,
         ),
-        outline: .new(
+        outline: FlintUiCardStyle(
           backgroundColor: FlintUiColors.transparent,
           borderColor: FlintUiColors.black.alpha20,
           borderRadius: FlintUiThemeData._baseCardBorderRadius,
         ),
       ),
-      scaffoldStyles: .new(
-        primary: .new(
+      scaffoldStyles: FlintUiScaffoldStyles(
+        primary: FlintUiScaffoldStyle(
           backgroundColor: FlintUiColors.white.shade50,
           floatingHeaderBackgroundColor: FlintUiColors.white,
           horizontalInset: FlintUiThemeData._spacing.md,
@@ -56,49 +56,49 @@ extension LightTheme on FlintUiThemeData {
         FlintUiThemeData._baseTextStyles(),
         baseTextColor,
       ),
-      alertStyles: .new(
-        info: .new(
+      alertStyles: FlintUiAlertStyles(
+        info: FlintUiAlertStyle(
           backgroundColor: FlintUiColors.blue.shade100,
           borderColor: FlintUiColors.blue.shade700,
           foregroundColor: FlintUiColors.blue.shade700,
           borderRadius: FlintUiThemeData._baseAlertBorderRadius,
         ),
-        success: .new(
+        success: FlintUiAlertStyle(
           backgroundColor: FlintUiColors.green.shade100,
           borderColor: FlintUiColors.green.shade700,
           foregroundColor: FlintUiColors.green.shade700,
           borderRadius: FlintUiThemeData._baseAlertBorderRadius,
         ),
-        warning: .new(
+        warning: FlintUiAlertStyle(
           backgroundColor: FlintUiColors.orange.shade100,
           borderColor: FlintUiColors.orange.shade700,
           foregroundColor: FlintUiColors.orange.shade700,
           borderRadius: FlintUiThemeData._baseAlertBorderRadius,
         ),
-        error: .new(
+        error: FlintUiAlertStyle(
           backgroundColor: FlintUiColors.red.shade100,
           borderColor: FlintUiColors.red.shade700,
           foregroundColor: FlintUiColors.red.shade700,
           borderRadius: FlintUiThemeData._baseAlertBorderRadius,
         ),
       ),
-      iconStyles: .new(),
-      fieldStyles: .new(
-        primary: .new(
+      iconStyles: FlintUiIconStyles(),
+      fieldStyles: FlintUiFieldStyles(
+        primary: FlintUiFieldStyle(
           backgroundColor: FlintUiColors.black.alpha05,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseFieldBorderRadius,
         ),
       ),
-      bottomNavigationBarStyles: .new(
-        primary: .new(
-          backgroundColor: FlintUiColors.black,
+      bottomNavigationBarStyles: FlintUiBottomNavigationBarStyles(
+        primary: FlintUiBottomNavigationBarStyle(
+          backgroundColor: FlintUiColors.white,
           borderColor: FlintUiColors.white.alpha10,
           borderRadius: FlintUiThemeData._baseBottomNavigationBarBorderRadius,
         ),
       ),
-      bottomNavigationBarItemStyles: .new(
-        primary: .new(
+      bottomNavigationBarItemStyles: FlintUiBottomNavigationBarItemStyles(
+        primary: FlintUiBottomNavigationBarItemStyle(
           activeBackgroundColor: FlintUiColors.white,
           inactiveBackgroundColor: FlintUiColors.transparent,
           activeForegroundColor: FlintUiColors.black,
