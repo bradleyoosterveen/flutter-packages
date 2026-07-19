@@ -27,6 +27,16 @@ class FlintUiCardStyle {
     required this.borderColor,
     required this.borderRadius,
   });
+
+  FlintUiCardStyle copyWith({
+    FlintUiColor? backgroundColor,
+    FlintUiColor? borderColor,
+    double? borderRadius,
+  }) => FlintUiCardStyle(
+    backgroundColor: backgroundColor ?? this.backgroundColor,
+    borderColor: borderColor ?? this.borderColor,
+    borderRadius: borderRadius ?? this.borderRadius,
+  );
 }
 
 class FlintUiCardStyles {
