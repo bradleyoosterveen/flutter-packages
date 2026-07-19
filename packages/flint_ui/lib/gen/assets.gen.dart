@@ -123,6 +123,9 @@ class $AssetsIconsGen {
   String get lucideLogOut24Regular =>
       'assets/icons/lucide--log-out-24-regular.svg';
 
+  /// File path: assets/icons/lucide--plus-24-regular.svg
+  String get lucidePlus24Regular => 'assets/icons/lucide--plus-24-regular.svg';
+
   /// File path: assets/icons/lucide--search-24-regular.svg
   String get lucideSearch24Regular =>
       'assets/icons/lucide--search-24-regular.svg';
@@ -160,6 +163,7 @@ class $AssetsIconsGen {
     lucideLibrary24Regular,
     lucideLoaderCircle24Regular,
     lucideLogOut24Regular,
+    lucidePlus24Regular,
     lucideSearch24Regular,
     lucideSettings24Regular,
     lucideSparkles24Regular,

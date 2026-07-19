@@ -82,6 +82,9 @@ class FlintUiIcon extends StatelessWidget {
   factory FlintUiIcon.logOut({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideLogOut24Regular, style);
 
+  factory FlintUiIcon.plus({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
+      FlintUiIcon._(Assets.icons.lucidePlus24Regular, style);
+
   factory FlintUiIcon.search({FlintUiIconStyleBuilder style = _defaultStyleBuilder}) =>
       FlintUiIcon._(Assets.icons.lucideSearch24Regular, style);
 
