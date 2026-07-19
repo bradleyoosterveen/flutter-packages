@@ -47,7 +47,7 @@ extension LightTheme on FlintUiThemeData {
       ),
       scaffoldStyles: .new(
         primary: .new(
-          backgroundColor: FlintUiColors.white.shade950,
+          backgroundColor: FlintUiColors.white.shade50,
           floatingHeaderBackgroundColor: FlintUiColors.white,
           horizontalInset: FlintUiThemeData._spacing.md,
         ),
