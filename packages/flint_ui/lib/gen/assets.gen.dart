@@ -71,6 +71,10 @@ class $AssetsIconsGen {
   String get lucideChevronLeft24Regular =>
       'assets/icons/lucide--chevron-left-24-regular.svg';
 
+  /// File path: assets/icons/lucide--chevron-right-24-regular.svg
+  String get lucideChevronRight24Regular =>
+      'assets/icons/lucide--chevron-right-24-regular.svg';
+
   /// File path: assets/icons/lucide--circle-alert-24-regular.svg
   String get lucideCircleAlert24Regular =>
       'assets/icons/lucide--circle-alert-24-regular.svg';
@@ -143,6 +147,7 @@ class $AssetsIconsGen {
     lucideBookUser24Regular,
     lucideCheck24Regular,
     lucideChevronLeft24Regular,
+    lucideChevronRight24Regular,
     lucideCircleAlert24Regular,
     lucideCircleCheck24Regular,
     lucideCircleInfo24Regular,
