@@ -11,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = FlintUiThemeData.fromBrightness(context, .light);
+    final themeData = FlintUiThemeData.fromPlatformBrightness(context);
 
     return MaterialApp(
       theme: themeData.toMaterialTheme(),
