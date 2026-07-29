@@ -11,12 +11,12 @@ typedef FlintUiIconStyleBuilder = FlintUiIconStyle Function(FlintUiIconStyle sty
 class FlintUiIcon extends StatelessWidget {
   static FlintUiIconStyle _defaultStyleBuilder(FlintUiIconStyle style) => style;
 
-  const FlintUiIcon._(this.icon, [this.style = _defaultStyleBuilder]);
+  const FlintUiIcon._(this.icon, [this.style = _defaultStyleBuilder, this.package = 'flint_ui']);
 
   factory FlintUiIcon({
     required String icon,
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
-  }) => FlintUiIcon._(icon, style);
+  }) => FlintUiIcon._(icon, style, null);
 
   factory FlintUiIcon.bell({
     FlintUiIconStyleBuilder style = _defaultStyleBuilder,
@@ -102,6 +102,7 @@ class FlintUiIcon extends StatelessWidget {
 
   final String icon;
   final FlintUiIconStyleBuilder style;
+  final String? package;
 
   String get assetName => icon;
 
@@ -114,7 +115,7 @@ class FlintUiIcon extends StatelessWidget {
       width: resolvedStyle.size,
       height: resolvedStyle.size,
       colorFilter: .mode(resolvedStyle.color.color, BlendMode.srcIn),
-      package: 'flint_ui',
+      package: package,
     );
   }
 }
