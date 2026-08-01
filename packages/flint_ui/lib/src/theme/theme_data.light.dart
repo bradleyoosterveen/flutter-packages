@@ -15,7 +15,7 @@ extension LightTheme on FlintUiThemeData {
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
         secondary: FlintUiButtonStyle(
-          backgroundColor: FlintUiColors.black.alpha10,
+          backgroundColor: FlintUiColors.white,
           foregroundColor: FlintUiColors.black,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,

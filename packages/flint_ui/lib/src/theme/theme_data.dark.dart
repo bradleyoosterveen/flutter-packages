@@ -15,7 +15,7 @@ extension DarkTheme on FlintUiThemeData {
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
         secondary: FlintUiButtonStyle(
-          backgroundColor: FlintUiColors.white.alpha10,
+          backgroundColor: FlintUiColors.black,
           foregroundColor: FlintUiColors.white,
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
