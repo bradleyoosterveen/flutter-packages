@@ -27,6 +27,7 @@ export 'src/widgets/button/button.dart';
 export 'src/widgets/card/card.dart';
 export 'src/widgets/carousel/carousel.dart';
 export 'src/widgets/field/field.dart';
+export 'src/widgets/field_group/field_group.dart';
 export 'src/widgets/icon/icon.dart';
 export 'src/widgets/scaffold/scaffold.dart';
 export 'src/widgets/text/text.dart';

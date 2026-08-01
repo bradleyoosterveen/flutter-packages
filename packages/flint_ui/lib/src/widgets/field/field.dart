@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 part 'field.style.dart';
 
@@ -12,6 +12,8 @@ class FlintUiField extends StatefulWidget {
     this.placeholderText,
     this.minLines = 1,
     this.maxLines = 1,
+    this.prefix,
+    this.suffix,
     super.key,
   });
 
@@ -21,6 +23,8 @@ class FlintUiField extends StatefulWidget {
     bool hasError = false,
     String? placeholderText,
     String? textInputType,
+    Widget? prefix,
+    Widget? suffix,
     Key? key,
   }) => FlintUiField._(
     controller: controller,
@@ -28,6 +32,8 @@ class FlintUiField extends StatefulWidget {
     hasError: hasError,
     obscure: false,
     placeholderText: placeholderText,
+    prefix: prefix,
+    suffix: suffix,
     key: key,
   );
 
@@ -53,6 +59,8 @@ class FlintUiField extends StatefulWidget {
     FocusNode? focusNode,
     bool hasError = false,
     String? placeholderText,
+    Widget? prefix,
+    Widget? suffix,
     Key? key,
   }) => FlintUiField._(
     controller: controller,
@@ -60,6 +68,8 @@ class FlintUiField extends StatefulWidget {
     hasError: hasError,
     obscure: true,
     placeholderText: placeholderText,
+    prefix: prefix,
+    suffix: suffix,
     key: key,
   );
 
@@ -70,6 +80,8 @@ class FlintUiField extends StatefulWidget {
   final String? placeholderText;
   final int? minLines;
   final int? maxLines;
+  final Widget? prefix;
+  final Widget? suffix;
 
   @override
   State<FlintUiField> createState() => _FlintUiFieldState();
@@ -85,51 +97,85 @@ class _FlintUiFieldState extends State<FlintUiField> {
   FlintUiColor get _borderColor =>
       widget.hasError ? FlintUiColors.orange : context.themeData.fieldStyles.primary.borderColor;
 
-  @override
-  Widget build(BuildContext context) => _field();
-
-  Widget _field() => AnimatedContainer(
-    duration: _animationDuration,
-    curve: _animationCurve,
-    decoration: BoxDecoration(
-      color: context.themeData.fieldStyles.primary.backgroundColor.color,
-      borderRadius: .circular(
-        context.themeData.fieldStyles.primary.borderRadius,
-      ),
-      border: .all(width: 1, color: _borderColor.color),
-    ),
-    child: FlintUiFlex.row(
-      children: [
-        Expanded(
-          child: IntrinsicHeight(
-            child: TextField(
-              minLines: widget.minLines,
-              maxLines: widget.maxLines,
-              obscureText: widget.obscure,
-              obscuringCharacter: _obscureCharacter,
-              focusNode: _focusNode,
-              controller: widget.controller,
-              decoration: InputDecoration(
-                contentPadding: .symmetric(
-                  horizontal: context.themeData.spacing.lg,
-                  vertical: context.themeData.spacing.md,
-                ),
-                hintText: widget.placeholderText,
-                border: InputBorder.none,
-                hintStyle: context.themeData.textStyles.bodyMedium
-                    .copyWith(
-                      color: context.themeData.textStyles.bodyMedium.color.alpha50,
-                    )
-                    .toTextStyle(),
-              ),
-              style: context.themeData.textStyles.labelLarge.toTextStyle(),
-              textAlignVertical: .top,
-              textAlign: .start,
-              onTapOutside: (_) => _focusNode.unfocus(),
-            ),
-          ),
+  EdgeInsetsGeometry _contentPadding(BuildContext context) =>
+      EdgeInsetsGeometry.symmetric(
+        vertical: context.themeData.spacing.md,
+      ).add(
+        .only(
+          left: widget.prefix == null ? context.themeData.spacing.sm : 0,
+          right: widget.suffix == null ? context.themeData.spacing.sm : 0,
         ),
-      ],
-    ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    final prefixWidget = widget.prefix;
+    final suffixWidget = widget.suffix;
+
+    return AnimatedContainer(
+      duration: _animationDuration,
+      curve: _animationCurve,
+      decoration: BoxDecoration(
+        color: context.themeData.fieldStyles.primary.backgroundColor.color,
+        borderRadius: .circular(
+          context.themeData.fieldStyles.primary.borderRadius,
+        ),
+        border: .all(width: 1, color: _borderColor.color),
+      ),
+      child: Padding(
+        padding: .symmetric(
+          horizontal: context.themeData.spacing.sm,
+        ),
+        child: FlintUiFlex.row(
+          crossAxisAlignment: .center,
+          divider: FlintUiGap.row(context.themeData.spacing.sm),
+          children: [
+            if (prefixWidget != null) ...[
+              _defaultFlexDivider(
+                context: context,
+                child: prefixWidget,
+              ),
+            ],
+            Expanded(
+              child: IntrinsicHeight(
+                child: TextField(
+                  minLines: widget.minLines,
+                  maxLines: widget.maxLines,
+                  obscureText: widget.obscure,
+                  obscuringCharacter: _obscureCharacter,
+                  focusNode: _focusNode,
+                  controller: widget.controller,
+                  decoration: InputDecoration(
+                    contentPadding: _contentPadding(context),
+                    hintText: widget.placeholderText,
+                    border: InputBorder.none,
+                    hintStyle: context.themeData.textStyles.bodyMedium
+                        .copyWith(
+                          color: context.themeData.textStyles.bodyMedium.color.alpha50,
+                        )
+                        .toTextStyle(),
+                  ),
+                  style: context.themeData.textStyles.labelLarge.toTextStyle(),
+                  textAlignVertical: .top,
+                  textAlign: .start,
+                  onTapOutside: (_) => _focusNode.unfocus(),
+                ),
+              ),
+            ),
+            if (suffixWidget != null) ...[
+              _defaultFlexDivider(
+                context: context,
+                child: suffixWidget,
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _defaultFlexDivider({required BuildContext context, required Widget child}) => DefaultFlintUiFlexDivider(
+    divider: FlintUiGap.row(context.themeData.spacing.xxs),
+    child: child,
   );
 }
