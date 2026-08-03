@@ -4,21 +4,25 @@ import 'package:flutter/material.dart';
 part 'field.style.dart';
 
 class FlintUiField extends StatefulWidget {
+  static FlintUiFieldStyle _defaultStyleBuilder(FlintUiFieldStyle style) => style;
+
   const FlintUiField._({
-    this.controller,
-    this.focusNode,
+    required this.controller,
+    required this.style,
+    required this.focusNode,
+    required this.placeholderText,
+    required this.prefix,
+    required this.suffix,
     this.hasError = false,
     this.obscure = false,
-    this.placeholderText,
     this.minLines = 1,
     this.maxLines = 1,
-    this.prefix,
-    this.suffix,
     super.key,
   });
 
   factory FlintUiField.text({
     TextEditingController? controller,
+    FlintUiFieldStyle Function(FlintUiFieldStyle style) style = _defaultStyleBuilder,
     FocusNode? focusNode,
     bool hasError = false,
     String? placeholderText,
@@ -28,6 +32,7 @@ class FlintUiField extends StatefulWidget {
     Key? key,
   }) => FlintUiField._(
     controller: controller,
+    style: style,
     focusNode: focusNode,
     hasError: hasError,
     obscure: false,
@@ -39,16 +44,20 @@ class FlintUiField extends StatefulWidget {
 
   factory FlintUiField.multiline({
     TextEditingController? controller,
+    FlintUiFieldStyle Function(FlintUiFieldStyle style) style = _defaultStyleBuilder,
     FocusNode? focusNode,
     bool hasError = false,
     String? placeholderText,
     Key? key,
   }) => FlintUiField._(
     controller: controller,
+    style: style,
     focusNode: focusNode,
+    placeholderText: placeholderText,
+    prefix: null,
+    suffix: null,
     hasError: hasError,
     obscure: false,
-    placeholderText: placeholderText,
     minLines: 2,
     maxLines: null,
     key: key,
@@ -56,6 +65,7 @@ class FlintUiField extends StatefulWidget {
 
   factory FlintUiField.password({
     TextEditingController? controller,
+    FlintUiFieldStyle Function(FlintUiFieldStyle style) style = _defaultStyleBuilder,
     FocusNode? focusNode,
     bool hasError = false,
     String? placeholderText,
@@ -64,6 +74,7 @@ class FlintUiField extends StatefulWidget {
     Key? key,
   }) => FlintUiField._(
     controller: controller,
+    style: style,
     focusNode: focusNode,
     hasError: hasError,
     obscure: true,
@@ -74,6 +85,7 @@ class FlintUiField extends StatefulWidget {
   );
 
   final TextEditingController? controller;
+  final FlintUiFieldStyle Function(FlintUiFieldStyle style) style;
   final FocusNode? focusNode;
   final bool hasError;
   final bool obscure;
@@ -94,9 +106,6 @@ class _FlintUiFieldState extends State<FlintUiField> {
 
   late final FocusNode _focusNode = widget.focusNode ?? FocusNode();
 
-  FlintUiColor get _borderColor =>
-      widget.hasError ? FlintUiColors.orange : context.themeData.fieldStyles.primary.borderColor;
-
   EdgeInsetsGeometry _contentPadding(BuildContext context) =>
       EdgeInsetsGeometry.symmetric(
         vertical: context.themeData.spacing.md,
@@ -109,6 +118,9 @@ class _FlintUiFieldState extends State<FlintUiField> {
 
   @override
   Widget build(BuildContext context) {
+    final resolvedStyle = widget.style(DefaultFlintUiFieldStyle.of(context));
+    final borderColor = widget.hasError ? FlintUiColors.orange : resolvedStyle.borderColor;
+
     final prefixWidget = widget.prefix;
     final suffixWidget = widget.suffix;
 
@@ -116,11 +128,11 @@ class _FlintUiFieldState extends State<FlintUiField> {
       duration: _animationDuration,
       curve: _animationCurve,
       decoration: BoxDecoration(
-        color: context.themeData.fieldStyles.primary.backgroundColor.color,
+        color: resolvedStyle.backgroundColor.color,
         borderRadius: .circular(
-          context.themeData.fieldStyles.primary.borderRadius,
+          resolvedStyle.borderRadius,
         ),
-        border: .all(width: 1, color: _borderColor.color),
+        border: .all(width: 1, color: borderColor.color),
       ),
       child: Padding(
         padding: .symmetric(

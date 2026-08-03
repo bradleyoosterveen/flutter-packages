@@ -27,6 +27,16 @@ class FlintUiFieldStyle {
     required this.borderColor,
     required this.borderRadius,
   });
+
+  FlintUiFieldStyle copyWith({
+    FlintUiColor? backgroundColor,
+    FlintUiColor? borderColor,
+    double? borderRadius,
+  }) => FlintUiFieldStyle(
+    backgroundColor: backgroundColor ?? this.backgroundColor,
+    borderColor: borderColor ?? this.borderColor,
+    borderRadius: borderRadius ?? this.borderRadius,
+  );
 }
 
 class FlintUiFieldStyles {

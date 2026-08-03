@@ -33,6 +33,11 @@ class FieldScreen extends StatelessWidget {
           ),
         ),
         FlintUiField.text(
+          placeholderText: 'Field (text with prefix and changed style)',
+          style: (style) => style.copyWith(borderRadius: 99),
+          suffix: FlintUiIcon.search(),
+        ),
+        FlintUiField.text(
           placeholderText: 'Field (text with multiple suffix)',
           suffix: FlintUiFlex.row(
             children: [
