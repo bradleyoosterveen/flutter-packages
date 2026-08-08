@@ -29,7 +29,7 @@ class BottomSheetScreen extends StatelessWidget {
                 ),
                 FlintUiFlex.column(
                   children: List.generate(
-                    64,
+                    8,
                     (index) => FlintUiText(index.toString()),
                   ),
                 ),

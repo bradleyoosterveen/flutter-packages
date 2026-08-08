@@ -43,44 +43,46 @@ class FlintUiBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final resolvedStyle = style(DefaultFlintUiBottomSheetStyle.of(context));
 
-    return Column(
-      mainAxisSize: .min,
-      crossAxisAlignment: .stretch,
-      children: [
-        if (_showAppBar) ...[
-          GestureDetector(
-            behavior: .translucent,
-            onTap: onClose,
-            child: Padding(
-              padding: .symmetric(horizontal: context.themeData.spacing.md),
-              child: FlintUiAppBar(
-                onClose: onClose,
+    return IntrinsicHeight(
+      child: Column(
+        mainAxisSize: .min,
+        crossAxisAlignment: .stretch,
+        children: [
+          if (_showAppBar) ...[
+            GestureDetector(
+              behavior: .translucent,
+              onTap: onClose,
+              child: Padding(
+                padding: .symmetric(horizontal: context.themeData.spacing.md),
+                child: FlintUiAppBar(
+                  onClose: onClose,
+                ),
               ),
             ),
-          ),
-        ],
-        Expanded(
-          child: Container(
-            clipBehavior: .antiAlias,
-            decoration: BoxDecoration(
-              borderRadius: .all(.circular(resolvedStyle.borderRadius)),
-              color: resolvedStyle.backgroundColor.color,
-            ),
-            child: Padding(
-              padding: .symmetric(
-                horizontal: context.themeData.spacing.md,
-                vertical: context.themeData.spacing.md,
+          ],
+          Expanded(
+            child: Container(
+              clipBehavior: .antiAlias,
+              decoration: BoxDecoration(
+                borderRadius: .all(.circular(resolvedStyle.borderRadius)),
+                color: resolvedStyle.backgroundColor.color,
               ),
-              child: SafeArea(
-                child: SingleChildScrollView(
-                  clipBehavior: .none,
-                  child: child,
+              child: Padding(
+                padding: .symmetric(
+                  horizontal: context.themeData.spacing.md,
+                  vertical: context.themeData.spacing.md,
+                ),
+                child: SafeArea(
+                  child: SingleChildScrollView(
+                    clipBehavior: .none,
+                    child: child,
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
