@@ -22,6 +22,7 @@ class FlintUiBottomSheet extends StatelessWidget {
     FlintUiBottomSheetStyle Function(FlintUiBottomSheetStyle style) style = _defaultStyleBuilder,
     VoidCallback? onClose,
   }) => showModalBottomSheet(
+    useRootNavigator: true,
     useSafeArea: true,
     context: context,
     enableDrag: false,
