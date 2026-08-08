@@ -7,6 +7,12 @@ extension DarkTheme on FlintUiThemeData {
     return FlintUiThemeData._(
       brightness: .dark,
       spacing: FlintUiThemeData._spacing,
+      bottomSheetStyles: FlintUiBottomSheetStyles(
+        primary: FlintUiBottomSheetStyle(
+          backgroundColor: FlintUiColors.black.shade950,
+          borderRadius: FlintUiThemeData._baseCardBorderRadius,
+        ),
+      ),
       buttonStyles: FlintUiButtonStyles(
         primary: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.white,

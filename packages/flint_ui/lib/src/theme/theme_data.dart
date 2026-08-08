@@ -1,4 +1,5 @@
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flint_ui/src/widgets/bottom_sheet/bottom_sheet.style.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -114,6 +115,7 @@ class FlintUiThemeData with Diagnosticable {
 
   final Brightness brightness;
   final FlintUiSpacing spacing;
+  final FlintUiBottomSheetStyles bottomSheetStyles;
   final FlintUiButtonStyles buttonStyles;
   final FlintUiCardStyles cardStyles;
   final FlintUiScaffoldStyles scaffoldStyles;
@@ -127,6 +129,7 @@ class FlintUiThemeData with Diagnosticable {
   const FlintUiThemeData._({
     required this.brightness,
     required this.spacing,
+    required this.bottomSheetStyles,
     required this.buttonStyles,
     required this.cardStyles,
     required this.scaffoldStyles,

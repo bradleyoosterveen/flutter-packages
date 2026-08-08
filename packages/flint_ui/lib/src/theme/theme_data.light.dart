@@ -7,6 +7,12 @@ extension LightTheme on FlintUiThemeData {
     return FlintUiThemeData._(
       brightness: .light,
       spacing: FlintUiThemeData._spacing,
+      bottomSheetStyles: FlintUiBottomSheetStyles(
+        primary: FlintUiBottomSheetStyle(
+          backgroundColor: FlintUiColors.white.shade50,
+          borderRadius: FlintUiThemeData._baseCardBorderRadius,
+        ),
+      ),
       buttonStyles: FlintUiButtonStyles(
         primary: FlintUiButtonStyle(
           backgroundColor: FlintUiColors.black,

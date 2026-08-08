@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class FlintUiInformationalLayout extends StatelessWidget {
   const FlintUiInformationalLayout({
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     this.icon,
     this.actions = const [],
     this.body,
@@ -12,13 +12,14 @@ class FlintUiInformationalLayout extends StatelessWidget {
   });
 
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final FlintUiIcon? icon;
   final List<Widget> actions;
   final Widget? body;
 
   @override
   Widget build(BuildContext context) {
+    final subtitleText = subtitle;
     final iconWidget = icon;
     final bodyWidget = body;
     final titleStyle = context.themeData.textStyles.headlineMedium;
@@ -42,7 +43,9 @@ class FlintUiInformationalLayout extends StatelessWidget {
               title,
               style: (_) => context.themeData.textStyles.titleLarge,
             ).centered(),
-            FlintUiText(subtitle).centered(),
+            if (subtitleText != null) ...[
+              FlintUiText(subtitleText).centered(),
+            ],
           ],
         ),
         if (bodyWidget != null) ...[bodyWidget],

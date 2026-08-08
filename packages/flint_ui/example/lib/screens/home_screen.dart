@@ -1,4 +1,5 @@
 import 'package:example/screens/examples/alert_screen.dart';
+import 'package:example/screens/examples/bottom_sheet_screen.dart';
 import 'package:example/screens/examples/button_screen.dart';
 import 'package:example/screens/examples/card_screen.dart';
 import 'package:example/screens/examples/carousel_screen.dart';
@@ -36,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
             FlintUiCard(
               child: FlintUiText('Alert'),
               onPressed: () => AlertScreen.push(context),
+            ),
+            FlintUiCard(
+              child: FlintUiText('BottomSheet'),
+              onPressed: () => BottomSheetScreen.push(context),
             ),
             FlintUiCard(
               child: FlintUiText('Button'),
