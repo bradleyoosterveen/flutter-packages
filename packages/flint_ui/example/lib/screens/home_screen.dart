@@ -5,6 +5,7 @@ import 'package:example/screens/examples/card_screen.dart';
 import 'package:example/screens/examples/carousel_screen.dart';
 import 'package:example/screens/examples/field_screen.dart';
 import 'package:example/screens/examples/informational_layout_screen.dart';
+import 'package:example/screens/examples/list_item_screen.dart';
 import 'package:example/screens/examples/scaffold_screen.dart';
 import 'package:example/screens/examples/text_screen.dart';
 import 'package:example/screens/examples/url_preview_screen.dart';
@@ -61,6 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
             FlintUiCard(
               child: FlintUiText('InformationalLayout'),
               onPressed: () => InformationalLayoutScreen.push(context),
+            ),
+            FlintUiCard(
+              child: FlintUiText('ListItem'),
+              onPressed: () => ListItemScreen.push(context),
             ),
             FlintUiCard(
               child: FlintUiText('Scaffold (body only)'),
