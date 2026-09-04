@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/material.dart';
 
 class ButtonScreen extends StatefulWidget {
   const ButtonScreen({super.key});
@@ -126,6 +126,31 @@ class Buttons extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              child: FlintUiText("Button (primary, small)"),
+            ),
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              child: FlintUiText("Button (primary, small)"),
+            ),
+          ],
+        ),
+      ),
+      DefaultFlintUiButtonWrapperBuilder(
+        builder: (context, button) => Opacity(
+          opacity: 0.2,
+          child: button,
+        ),
+        child: FlintUiFlex.column(
+          children: [
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              child: FlintUiText("Button (primary, small, wrapped)"),
             ),
           ],
         ),

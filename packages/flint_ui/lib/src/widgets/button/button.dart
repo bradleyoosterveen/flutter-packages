@@ -1,8 +1,28 @@
+import 'package:flint_ui/flint_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flint_ui/flint_ui.dart';
 
 part 'button.style.dart';
+
+class DefaultFlintUiButtonWrapperBuilder extends InheritedWidget {
+  const DefaultFlintUiButtonWrapperBuilder({
+    required this.builder,
+    required super.child,
+    super.key,
+  });
+
+  final Widget Function(
+    BuildContext context,
+    Widget button,
+  )
+  builder;
+
+  static DefaultFlintUiButtonWrapperBuilder? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<DefaultFlintUiButtonWrapperBuilder>();
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => oldWidget != this;
+}
 
 class FlintUiButton extends StatefulWidget {
   static FlintUiButtonStyle _defaultStyleBuilder(FlintUiButtonStyle style) => style;
@@ -131,7 +151,9 @@ class _FlintUiButtonState extends State<FlintUiButton> {
       color: resolvedStyle.foregroundColor,
     );
 
-    return DefaultFlintUiTextStyle(
+    final wrapperBuilder = DefaultFlintUiButtonWrapperBuilder.maybeOf(context)?.builder ?? (_, button) => button;
+
+    final button = DefaultFlintUiTextStyle(
       style: defaultTextStyle,
       child: DefaultFlintUiIconStyle(
         style: context.themeData.iconStyles.fromTextStyle(defaultTextStyle),
@@ -202,6 +224,8 @@ class _FlintUiButtonState extends State<FlintUiButton> {
         ),
       ),
     );
+
+    return wrapperBuilder(context, button);
   }
 
   Widget _animatedAlignWrapper({

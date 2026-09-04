@@ -18,20 +18,22 @@ melos:
       run: dart create -t package packages/ui
 
     test:
-      description: Run tests in all packages
+      description: Run tests
       exec: dart test --reporter=expanded
       packageFilters:
         dirExists:
           - 'test'
 
-    generate:indexes:
-      description: Run index_generator for all packages
-      exec: dart run index_generator
+    generate:index:
+      description: Generate indexes
+      exec: dart pub run index_generator
+      packageFilters:
 
     format:
-      description: Format and fix all packages
+      description: Format
       exec: dart format . && dart fix --apply
+      packageFilters:
 
-    dart:version:
-      description: Check the Dart version
-      exec: which dart && dart --version
+    flutter:version:
+      description: Print Flutter version
+      exec: flutter --version
