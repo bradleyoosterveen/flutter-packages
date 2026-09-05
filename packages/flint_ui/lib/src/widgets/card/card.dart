@@ -26,7 +26,7 @@ class FlintUiCardGroup extends StatelessWidget {
     super.key,
   });
 
-  final List<FlintUiCard> cards;
+  final List<Widget> cards;
 
   @override
   Widget build(BuildContext context) => FlintUiFlex.column(
