@@ -3,8 +3,53 @@ import 'package:flutter/widgets.dart';
 
 part 'card.style.dart';
 
+class _FlintUiCardGroupItemData extends InheritedWidget {
+  const _FlintUiCardGroupItemData({
+    required super.child,
+    required this.isFirst,
+    required this.isLast,
+  });
+
+  final bool isFirst;
+  final bool isLast;
+
+  static _FlintUiCardGroupItemData? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_FlintUiCardGroupItemData>();
+
+  @override
+  bool updateShouldNotify(_FlintUiCardGroupItemData old) => true;
+}
+
+class FlintUiCardGroup extends StatelessWidget {
+  static FlintUiCardStyle _defaultStyleBuilder(FlintUiCardStyle style) => style;
+
+  const FlintUiCardGroup({
+    required this.cards,
+    this.style = _defaultStyleBuilder,
+    super.key,
+  });
+
+  final List<FlintUiCard> cards;
+  final FlintUiCardStyle Function(FlintUiCardStyle style) style;
+
+  @override
+  Widget build(BuildContext context) => FlintUiFlex.column(
+    divider: FlintUiGap.column(context.themeData.spacing.xxxs),
+    crossAxisAlignment: .stretch,
+    children: List.generate(
+      cards.length,
+      (index) => _FlintUiCardGroupItemData(
+        isFirst: index == 0,
+        isLast: index + 1 == cards.length,
+        child: cards[index],
+      ),
+    ),
+  );
+}
+
 class FlintUiCard extends StatelessWidget {
   static FlintUiCardStyle _defaultStyleBuilder(FlintUiCardStyle style) => style;
+
   static VoidCallback _defaultOnPressed() => () {};
 
   const FlintUiCard({
@@ -42,6 +87,20 @@ class FlintUiCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = style(DefaultFlintUiCardStyle.of(context));
+    final groupItemData = _FlintUiCardGroupItemData.maybeOf(context);
+
+    final defaultBorderRadius = BorderRadius.circular(resolvedStyle.borderRadius);
+
+    final BorderRadiusGeometry borderRadius = switch (groupItemData) {
+      _FlintUiCardGroupItemData data => switch (Never) {
+        _ when data.isFirst && data.isLast => defaultBorderRadius,
+        _ when !data.isLast && !data.isFirst => BorderRadiusGeometry.circular(0),
+        _ when data.isFirst => BorderRadiusGeometry.vertical(top: .circular(resolvedStyle.borderRadius)),
+        _ when data.isLast => BorderRadiusGeometry.vertical(bottom: .circular(resolvedStyle.borderRadius)),
+        _ => defaultBorderRadius,
+      },
+      _ => defaultBorderRadius,
+    };
 
     return GestureDetector(
       behavior: .translucent,
@@ -50,7 +109,7 @@ class FlintUiCard extends StatelessWidget {
         clipBehavior: .antiAlias,
         decoration: BoxDecoration(
           color: resolvedStyle.backgroundColor.color,
-          borderRadius: .circular(resolvedStyle.borderRadius),
+          borderRadius: borderRadius,
           border: .all(
             color: resolvedStyle.borderColor.color,
             width: 1,

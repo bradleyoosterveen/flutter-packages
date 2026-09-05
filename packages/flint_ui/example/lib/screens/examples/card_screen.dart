@@ -128,55 +128,21 @@ class CardScreen extends StatelessWidget {
             ],
           ),
         ),
-        FlintUiCard(
-          style: (_) => context.themeData.cardStyles.filled,
-          child: FlintUiFlex.column(
-            crossAxisAlignment: .start,
-            divider: FlintUiGap.column(context.themeData.spacing.xs),
-            children: [
-              FlintUiText(
-                'Timeslot',
-                style: (_) => context.themeData.textStyles.titleMedium,
+        FlintUiFlex.column(
+          divider: FlintUiGap.column(context.themeData.spacing.sm),
+          crossAxisAlignment: .stretch,
+          children: List.generate(
+            3,
+            (index) => FlintUiCardGroup(
+              cards: List.generate(
+                index + 1,
+                (index) => FlintUiCard(
+                  style: (_) => context.themeData.cardStyles.filled,
+                  size: .medium,
+                  child: Text('Grouped $index'),
+                ),
               ),
-              FlintUiFlex.row(
-                divider: FlintUiGap.row(context.themeData.spacing.xs),
-                children: [
-                  FlintUiCard(
-                    size: .small,
-                    child: FlintUiText(
-                      '02-02-2024',
-                      style: (_) => context.themeData.textStyles.labelLarge,
-                    ),
-                  ),
-                  FlintUiCard(
-                    size: .small,
-                    child: FlintUiText(
-                      '19:00',
-                      style: (_) => context.themeData.textStyles.labelLarge,
-                    ),
-                  ),
-                ],
-              ),
-              FlintUiFlex.row(
-                divider: FlintUiGap.row(context.themeData.spacing.xs),
-                children: [
-                  FlintUiCard(
-                    size: .small,
-                    child: FlintUiText(
-                      '02-02-2024',
-                      style: (_) => context.themeData.textStyles.labelLarge,
-                    ),
-                  ),
-                  FlintUiCard(
-                    size: .small,
-                    child: FlintUiText(
-                      '23:00',
-                      style: (_) => context.themeData.textStyles.labelLarge,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ],
