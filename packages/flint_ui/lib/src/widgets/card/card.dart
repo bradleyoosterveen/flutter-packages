@@ -21,16 +21,12 @@ class _FlintUiCardGroupItemData extends InheritedWidget {
 }
 
 class FlintUiCardGroup extends StatelessWidget {
-  static FlintUiCardStyle _defaultStyleBuilder(FlintUiCardStyle style) => style;
-
   const FlintUiCardGroup({
     required this.cards,
-    this.style = _defaultStyleBuilder,
     super.key,
   });
 
   final List<FlintUiCard> cards;
-  final FlintUiCardStyle Function(FlintUiCardStyle style) style;
 
   @override
   Widget build(BuildContext context) => FlintUiFlex.column(
