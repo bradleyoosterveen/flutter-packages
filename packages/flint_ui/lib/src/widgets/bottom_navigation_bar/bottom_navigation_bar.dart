@@ -33,6 +33,8 @@ class FlintUiBottomNavigationBarItem extends StatelessWidget {
   );
 }
 
+enum FlintUiBottomNavigationBarAlignment { left, right, center }
+
 class FlintUiBottomNavigationBar extends StatelessWidget {
   static FlintUiBottomNavigationBarStyle _defaultStyleBuilder(
     FlintUiBottomNavigationBarStyle style,
@@ -41,43 +43,54 @@ class FlintUiBottomNavigationBar extends StatelessWidget {
   FlintUiBottomNavigationBar({
     required this.items,
     this.style = _defaultStyleBuilder,
+    this.alignment = .center,
     super.key,
   }) : assert(items.isNotEmpty, 'Items list cannot be empty');
 
   final List<FlintUiBottomNavigationBarItem> items;
   final FlintUiBottomNavigationBarStyle Function(FlintUiBottomNavigationBarStyle style) style;
+  final FlintUiBottomNavigationBarAlignment alignment;
 
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = style(DefaultUiBottomNavigationBarStyle.of(context));
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: context.themeData.spacing.xs,
-        vertical: context.themeData.spacing.sm,
-      ),
-      child: SafeArea(
-        top: false,
-        child: Container(
-          clipBehavior: .none,
-          decoration: BoxDecoration(
-            color: resolvedStyle.backgroundColor.color,
-            borderRadius: .circular(resolvedStyle.borderRadius),
-            border: .all(
-              color: resolvedStyle.borderColor.color,
-              width: 1,
-              strokeAlign: BorderSide.strokeAlignOutside,
-            ),
+    return FlintUiFlex.row(
+      mainAxisAlignment: switch (alignment) {
+        .center => .center,
+        .left => .start,
+        .right => .end,
+      },
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.themeData.spacing.xs,
+            vertical: context.themeData.spacing.sm,
           ),
-          child: Padding(
-            padding: EdgeInsets.all(context.themeData.spacing.xs),
-            child: FlintUiFlex.row(
-              mainAxisAlignment: .spaceBetween,
-              children: items,
+          child: SafeArea(
+            top: false,
+            child: Container(
+              clipBehavior: .none,
+              decoration: BoxDecoration(
+                color: resolvedStyle.backgroundColor.color,
+                borderRadius: .circular(resolvedStyle.borderRadius),
+                border: .all(
+                  color: resolvedStyle.borderColor.color,
+                  width: 1,
+                  strokeAlign: BorderSide.strokeAlignOutside,
+                ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(context.themeData.spacing.xs),
+                child: FlintUiFlex.row(
+                  divider: FlintUiGap.row(context.themeData.spacing.xs),
+                  children: items,
+                ),
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
