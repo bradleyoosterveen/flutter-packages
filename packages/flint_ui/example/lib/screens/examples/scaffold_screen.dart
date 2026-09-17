@@ -88,24 +88,44 @@ class ScaffoldScreen extends StatelessWidget {
               return FlintUiBottomNavigationBar(
                 items: [
                   FlintUiBottomNavigationBarItem(
-                    icon: .house(),
                     isActive: index == 0,
                     onPressed: () => setState(() => index = 0),
+                    child: FlintUiFlex.column(
+                      children: [
+                        FlintUiIcon.house(),
+                        FlintUiText('Home'),
+                      ],
+                    ),
                   ),
                   FlintUiBottomNavigationBarItem(
-                    icon: .library(),
                     isActive: index == 1,
                     onPressed: () => setState(() => index = 1),
+                    child: FlintUiFlex.column(
+                      children: [
+                        FlintUiIcon.library(),
+                        FlintUiText('Library'),
+                      ],
+                    ),
                   ),
                   FlintUiBottomNavigationBarItem(
-                    icon: .sparkles(),
                     isActive: index == 2,
                     onPressed: () => setState(() => index = 2),
+                    child: FlintUiFlex.column(
+                      children: [
+                        FlintUiIcon.search(),
+                        FlintUiText('Search'),
+                      ],
+                    ),
                   ),
                   FlintUiBottomNavigationBarItem(
-                    icon: .search(),
                     isActive: index == 3,
                     onPressed: () => setState(() => index = 3),
+                    child: FlintUiFlex.column(
+                      children: [
+                        FlintUiIcon.user(),
+                        FlintUiText('Profile'),
+                      ],
+                    ),
                   ),
                 ],
               );

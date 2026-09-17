@@ -108,7 +108,7 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
                         if (footer != null) ...[
                           Visibility.maintain(
                             visible: false,
-                            child: _footer(footer),
+                            child: _footer(footer, resolvedStyle),
                           ),
                         ],
                       ],
@@ -119,7 +119,7 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
             ),
           ),
           if (footer != null) ...[
-            Align(alignment: .bottomCenter, child: _footer(footer)),
+            Align(alignment: .bottomCenter, child: _footer(footer, resolvedStyle)),
           ],
           if (floatingHeader != null) ...[
             Align(
@@ -147,7 +147,30 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
     );
   }
 
-  Widget _footer(Widget footer) => Column(mainAxisSize: .min, children: [footer]);
+  Widget _footer(Widget footer, FlintUiScaffoldStyle resolvedStyle) => Stack(
+    children: [
+      Positioned.fill(
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: .topCenter,
+              end: .bottomCenter,
+              colors: [
+                resolvedStyle.backgroundColor.color.withAlpha(0),
+                resolvedStyle.backgroundColor.color,
+                resolvedStyle.backgroundColor.color,
+              ],
+              tileMode: .mirror,
+            ),
+          ),
+        ),
+      ),
+      Column(
+        mainAxisSize: .min,
+        children: [footer],
+      ),
+    ],
+  );
 
   Widget _header(Widget header) => SafeArea(
     bottom: false,

@@ -111,7 +111,6 @@ class FlintUiThemeData with Diagnosticable {
   );
   static final double _baseAlertBorderRadius = 8;
   static final double _baseFieldBorderRadius = 16;
-  static final double _baseBottomNavigationBarBorderRadius = 99;
 
   final Brightness brightness;
   final FlintUiSpacing spacing;
@@ -123,8 +122,6 @@ class FlintUiThemeData with Diagnosticable {
   final FlintUiAlertStyles alertStyles;
   final FlintUiIconStyles iconStyles;
   final FlintUiFieldStyles fieldStyles;
-  final FlintUiBottomNavigationBarStyles bottomNavigationBarStyles;
-  final FlintUiBottomNavigationBarItemStyles bottomNavigationBarItemStyles;
 
   const FlintUiThemeData._({
     required this.brightness,
@@ -137,8 +134,6 @@ class FlintUiThemeData with Diagnosticable {
     required this.alertStyles,
     required this.iconStyles,
     required this.fieldStyles,
-    required this.bottomNavigationBarStyles,
-    required this.bottomNavigationBarItemStyles,
   });
 
   factory FlintUiThemeData.fromPlatformBrightness(BuildContext context) {

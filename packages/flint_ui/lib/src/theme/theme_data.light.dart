@@ -96,21 +96,6 @@ extension LightTheme on FlintUiThemeData {
           borderRadius: FlintUiThemeData._baseFieldBorderRadius,
         ),
       ),
-      bottomNavigationBarStyles: FlintUiBottomNavigationBarStyles(
-        primary: FlintUiBottomNavigationBarStyle(
-          backgroundColor: FlintUiColors.white,
-          borderColor: FlintUiColors.white.alpha10,
-          borderRadius: FlintUiThemeData._baseBottomNavigationBarBorderRadius,
-        ),
-      ),
-      bottomNavigationBarItemStyles: FlintUiBottomNavigationBarItemStyles(
-        primary: FlintUiBottomNavigationBarItemStyle(
-          activeBackgroundColor: FlintUiColors.white,
-          inactiveBackgroundColor: FlintUiColors.transparent,
-          activeForegroundColor: FlintUiColors.black,
-          inactiveForegroundColor: FlintUiColors.black,
-        ),
-      ),
     );
   }
 }
