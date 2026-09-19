@@ -11,7 +11,7 @@ class FlintUiScaffold extends StatefulWidget {
     this.header,
     this.footer,
     this.style = _defaultStyleBuilder,
-    this.bodyFillRemaining = false,
+    this.bodyFillRemaining = true,
     super.key,
   });
 
