@@ -19,7 +19,7 @@ class FlintUiScaffoldPage extends StatelessWidget {
     padding: EdgeInsets.symmetric(
       horizontal: switch (paddingDensity) {
         .none => 0,
-        .compact => context.themeData.spacing.xs,
+        .compact => context.themeData.spacing.sm,
       },
     ),
     child: child,
