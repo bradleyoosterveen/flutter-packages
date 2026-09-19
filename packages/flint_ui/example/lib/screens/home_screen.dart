@@ -72,10 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => ScaffoldScreen.push(context, .bodyOnly),
             ),
             FlintUiCard(
-              child: FlintUiText('Scaffold (body with grid only)'),
-              onPressed: () => ScaffoldScreen.push(context, .bodyWithGridOnly),
-            ),
-            FlintUiCard(
               child: FlintUiText('Scaffold (centered body)'),
               onPressed: () => ScaffoldScreen.push(context, .centeredBody),
             ),

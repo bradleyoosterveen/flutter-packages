@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 enum ScaffoldScreenVariant {
   bodyOnly,
-  bodyWithGridOnly,
   centeredBody,
   topAlignedBody,
   appBarAndBody,
@@ -35,22 +34,13 @@ class ScaffoldScreen extends StatelessWidget {
         ],
       ),
     ),
-    .bodyWithGridOnly => FlintUiScaffold(
-      body: GridView.count(
-        crossAxisCount: 3,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        children: List.generate(20, (i) => FlintUiText('App bar and body. $i')),
-      ),
-    ),
     .centeredBody => FlintUiScaffold(
       header: FlintUiAppBar(
         titleText: 'UiScaffold',
         onGoBack: Navigator.of(context).pop,
       ),
-      body: Center(
-        child: FlintUiText('Centered'),
-      ),
+      bodyAlignment: .center,
+      body: FlintUiText('Centered').centered(),
     ),
     .topAlignedBody => FlintUiScaffold(
       header: FlintUiAppBar(
@@ -89,11 +79,12 @@ class ScaffoldScreen extends StatelessWidget {
         titleText: 'UiScaffold',
         onGoBack: Navigator.of(context).pop,
       ),
+      bodyAlignment: .center,
       body: FlintUiFlex.column(
         divider: FlintUiGap.column(context.themeData.spacing.sm),
         crossAxisAlignment: .stretch,
         children: [
-          ...List.generate(40, (i) => FlintUiText('App bar, body and action bar.')),
+          ...List.generate(40, (i) => FlintUiText('App bar, body and action bar. (and body centered)')),
         ],
       ),
       footer: Builder(
