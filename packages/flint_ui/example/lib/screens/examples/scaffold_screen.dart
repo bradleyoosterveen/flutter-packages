@@ -35,12 +35,19 @@ class ScaffoldScreen extends StatelessWidget {
       ),
     ),
     .centeredBody => FlintUiScaffold(
-      body: Center(
-        child: FlintUiText('Centered'),
+      header: FlintUiAppBar(
+        titleText: 'UiScaffold',
+        onGoBack: Navigator.of(context).pop,
       ),
+      bodyAlignment: .center,
+      body: FlintUiText('Centered').centered(),
     ),
     .topAlignedBody => FlintUiScaffold(
-      body: FlintUiText('Centered'),
+      header: FlintUiAppBar(
+        titleText: 'UiScaffold',
+        onGoBack: Navigator.of(context).pop,
+      ),
+      body: FlintUiText('Top aligned'),
     ),
     .appBarAndBody => FlintUiScaffold(
       header: FlintUiAppBar(
@@ -72,11 +79,12 @@ class ScaffoldScreen extends StatelessWidget {
         titleText: 'UiScaffold',
         onGoBack: Navigator.of(context).pop,
       ),
+      bodyAlignment: .center,
       body: FlintUiFlex.column(
         divider: FlintUiGap.column(context.themeData.spacing.sm),
         crossAxisAlignment: .stretch,
         children: [
-          ...List.generate(40, (i) => FlintUiText('App bar, body and action bar.')),
+          ...List.generate(40, (i) => FlintUiText('App bar, body and action bar. (and body centered)')),
         ],
       ),
       footer: Builder(

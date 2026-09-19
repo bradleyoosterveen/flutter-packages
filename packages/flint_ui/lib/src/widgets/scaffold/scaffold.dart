@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 part 'scaffold.style.dart';
 
+enum FlintUiScaffoldBodyAlignment { top, center }
+
 class FlintUiScaffold extends StatefulWidget {
   static FlintUiScaffoldStyle _defaultStyleBuilder(FlintUiScaffoldStyle style) => style;
 
@@ -12,6 +14,7 @@ class FlintUiScaffold extends StatefulWidget {
     this.floatingHeader,
     this.footer,
     this.style = _defaultStyleBuilder,
+    this.bodyAlignment = .top,
     super.key,
   });
 
@@ -20,6 +23,7 @@ class FlintUiScaffold extends StatefulWidget {
   final Widget? floatingHeader;
   final Widget? footer;
   final FlintUiScaffoldStyle Function(FlintUiScaffoldStyle style) style;
+  final FlintUiScaffoldBodyAlignment bodyAlignment;
 
   @override
   State<FlintUiScaffold> createState() => _FlintUiScaffoldState();
@@ -77,43 +81,43 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: LayoutBuilder(
-              builder: (context, constraints) => SingleChildScrollView(
-                controller: _scrollController,
-                child: IntrinsicHeight(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.minHeight,
-                    ),
-                    child: FlintUiFlex.column(
-                      crossAxisAlignment: .stretch,
-                      divider: FlintUiGap.column(context.themeData.spacing.sm),
-                      mainAxisSize: .max,
-                      children: [
-                        if (header != null) ...[
-                          _header(header),
-                        ],
-                        Expanded(
-                          child: SafeArea(
-                            top: header == null,
-                            bottom: footer == null,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: resolvedStyle.horizontalInset,
-                              ),
-                              child: body,
-                            ),
-                          ),
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.sizeOf(context).height,
+                ),
+                child: FlintUiFlex.column(
+                  crossAxisAlignment: .stretch,
+                  mainAxisAlignment: switch (widget.bodyAlignment) {
+                    .top => .start,
+                    .center => .spaceBetween,
+                  },
+                  children: [
+                    if (header != null) ...[
+                      _header(header),
+                    ] else ...[
+                      SizedBox(),
+                    ],
+                    SafeArea(
+                      top: header == null,
+                      bottom: footer == null,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: resolvedStyle.horizontalInset,
                         ),
-                        if (footer != null) ...[
-                          Visibility.maintain(
-                            visible: false,
-                            child: _footer(footer, resolvedStyle),
-                          ),
-                        ],
-                      ],
+                        child: body,
+                      ),
                     ),
-                  ),
+                    if (footer != null) ...[
+                      Visibility.maintain(
+                        visible: false,
+                        child: _footer(footer, resolvedStyle),
+                      ),
+                    ] else ...[
+                      SizedBox(),
+                    ],
+                  ],
                 ),
               ),
             ),
@@ -172,16 +176,10 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
     ],
   );
 
-  Widget _header(Widget header) => SafeArea(
-    bottom: false,
-    child: Padding(
-      padding: .symmetric(horizontal: context.themeData.spacing.md),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height * 0.08,
-        ),
-        child: header,
-      ),
+  Widget _header(Widget header) => ConstrainedBox(
+    constraints: BoxConstraints(
+      minHeight: MediaQuery.of(context).size.height * 0.08,
     ),
+    child: header,
   );
 }

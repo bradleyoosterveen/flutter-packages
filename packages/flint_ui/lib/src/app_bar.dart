@@ -25,61 +25,67 @@ class FlintUiAppBar extends StatelessWidget {
     final leading = leadingWidget;
     final trailing = trailingWidget;
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        minHeight: MediaQuery.of(context).size.height * 0.08,
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: FlintUiFlex.row(
-              divider: FlintUiGap.row(context.themeData.spacing.xs),
-              children: [
-                if (onGoBack != null) ...[
-                  AnimatedOpacity(
-                    duration: const Duration(milliseconds: 150),
-                    curve: Curves.easeInOutCubic,
-                    opacity: onGoBack != null ? 1 : 0,
-                    child: FlintUiButton.square(
-                      style: (_) => context.themeData.buttonStyles.ghost,
-                      onPressed: onGoBack,
-                      child: FlintUiIcon.chevronLeft(),
-                    ),
-                  ),
-                ],
-                if (leading != null) ...[leading],
-              ],
-            ),
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: .symmetric(horizontal: context.themeData.spacing.md),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: MediaQuery.of(context).size.height * 0.08,
           ),
-          if (title != null) ...[
-            FlintUiText(
-              title,
-              style: (_) => context.themeData.textStyles.titleMedium,
-            ),
-          ],
-          Expanded(
-            child: FlintUiFlex.row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              divider: FlintUiGap.row(context.themeData.spacing.sm),
-              children: [
-                if (actions != null && actions!.isNotEmpty) ...[...actions!],
-                if (trailing != null) ...[trailing],
-                if (onClose != null) ...[
-                  AnimatedScale(
-                    duration: const Duration(milliseconds: 150),
-                    curve: Curves.easeInOutCubic,
-                    scale: onClose != null ? 1 : 0,
-                    child: FlintUiButton.square(
-                      style: (_) => context.themeData.buttonStyles.ghost,
-                      onPressed: onClose,
-                      child: FlintUiIcon.x(),
-                    ),
-                  ),
-                ],
+          child: Row(
+            children: [
+              Expanded(
+                child: FlintUiFlex.row(
+                  divider: FlintUiGap.row(context.themeData.spacing.xs),
+                  children: [
+                    if (onGoBack != null) ...[
+                      AnimatedOpacity(
+                        duration: const Duration(milliseconds: 150),
+                        curve: Curves.easeInOutCubic,
+                        opacity: onGoBack != null ? 1 : 0,
+                        child: FlintUiButton.square(
+                          style: (_) => context.themeData.buttonStyles.ghost,
+                          onPressed: onGoBack,
+                          child: FlintUiIcon.chevronLeft(),
+                        ),
+                      ),
+                    ],
+                    if (leading != null) ...[leading],
+                  ],
+                ),
+              ),
+              if (title != null) ...[
+                FlintUiText(
+                  title,
+                  style: (_) => context.themeData.textStyles.titleMedium,
+                ),
               ],
-            ),
+              Expanded(
+                child: FlintUiFlex.row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  divider: FlintUiGap.row(context.themeData.spacing.sm),
+                  children: [
+                    if (actions != null && actions!.isNotEmpty) ...[...actions!],
+                    if (trailing != null) ...[trailing],
+                    if (onClose != null) ...[
+                      AnimatedScale(
+                        duration: const Duration(milliseconds: 150),
+                        curve: Curves.easeInOutCubic,
+                        scale: onClose != null ? 1 : 0,
+                        child: FlintUiButton.square(
+                          style: (_) => context.themeData.buttonStyles.ghost,
+                          onPressed: onClose,
+                          child: FlintUiIcon.x(),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
