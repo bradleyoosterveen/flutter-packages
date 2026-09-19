@@ -9,63 +9,26 @@ class FlintUiScaffold extends StatefulWidget {
   const FlintUiScaffold({
     required this.body,
     this.header,
-    this.floatingHeader,
     this.footer,
     this.style = _defaultStyleBuilder,
+    this.bodyFillRemaining = true,
     super.key,
   });
 
   final Widget body;
   final Widget? header;
-  final Widget? floatingHeader;
   final Widget? footer;
   final FlintUiScaffoldStyle Function(FlintUiScaffoldStyle style) style;
+  final bool bodyFillRemaining;
 
   @override
   State<FlintUiScaffold> createState() => _FlintUiScaffoldState();
 }
 
 class _FlintUiScaffoldState extends State<FlintUiScaffold> {
-  final ScrollController _scrollController = ScrollController();
-
-  late final double _scrollThreshold = MediaQuery.of(context).size.height * 0.1;
-
-  bool _showFloatingHeader = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (_scrollController.position.pixels > _scrollThreshold) {
-      if (!_showFloatingHeader) {
-        setState(() {
-          _showFloatingHeader = true;
-        });
-      }
-    } else {
-      if (_showFloatingHeader) {
-        setState(() {
-          _showFloatingHeader = false;
-        });
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final header = widget.header;
-    final floatingHeader = widget.floatingHeader;
     final body = widget.body;
     final footer = widget.footer;
 
@@ -77,75 +40,61 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: LayoutBuilder(
-              builder: (context, constraints) => SingleChildScrollView(
-                controller: _scrollController,
-                child: IntrinsicHeight(
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      minHeight: constraints.minHeight,
-                    ),
-                    child: FlintUiFlex.column(
-                      crossAxisAlignment: .stretch,
-                      divider: FlintUiGap.column(context.themeData.spacing.sm),
-                      mainAxisSize: .max,
-                      children: [
-                        if (header != null) ...[
-                          _header(header),
-                        ],
-                        Expanded(
-                          child: SafeArea(
-                            top: header == null,
-                            bottom: footer == null,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: resolvedStyle.horizontalInset,
-                              ),
-                              child: body,
-                            ),
-                          ),
+            child: FlintUiFlex.column(
+              crossAxisAlignment: .stretch,
+              mainAxisSize: .max,
+              children: [
+                Expanded(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => SingleChildScrollView(
+                      clipBehavior: .none,
+                      child: _maybeFillRemaining(
+                        constraints: constraints,
+                        child: Column(
+                          mainAxisSize: .max,
+                          children: [
+                            if (header != null) ...[
+                              _header(header, resolvedStyle),
+                            ],
+                            _maybeExpanded(child: body),
+                          ],
                         ),
-                        if (footer != null) ...[
-                          Visibility.maintain(
-                            visible: false,
-                            child: _footer(footer, resolvedStyle),
-                          ),
-                        ],
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
+                if (footer != null) ...[
+                  Visibility.maintain(
+                    visible: false,
+                    child: _footer(footer, resolvedStyle),
+                  ),
+                ],
+              ],
             ),
           ),
           if (footer != null) ...[
-            Align(alignment: .bottomCenter, child: _footer(footer, resolvedStyle)),
-          ],
-          if (floatingHeader != null) ...[
             Align(
-              alignment: .topCenter,
-              child: AnimatedSlide(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.easeInOut,
-                offset: _showFloatingHeader ? Offset(0, 0) : Offset(0, -1),
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    color: resolvedStyle.floatingHeaderBackgroundColor.color,
-                    borderRadius: const .only(
-                      bottomLeft: .circular(16),
-                      bottomRight: .circular(16),
-                    ),
-                  ),
-                  child: _header(floatingHeader),
-                ),
-              ),
+              alignment: .bottomCenter,
+              child: _footer(footer, resolvedStyle),
             ),
           ],
         ],
       ),
     );
   }
+
+  Widget _maybeExpanded({required Widget child}) => widget.bodyFillRemaining ? Expanded(child: child) : child;
+
+  Widget _maybeFillRemaining({required Widget child, required BoxConstraints constraints}) => widget.bodyFillRemaining
+      ? IntrinsicHeight(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.minHeight,
+            ),
+            child: child,
+          ),
+        )
+      : child;
 
   Widget _footer(Widget footer, FlintUiScaffoldStyle resolvedStyle) => Stack(
     children: [
@@ -159,29 +108,16 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
                 resolvedStyle.backgroundColor.color.withAlpha(0),
                 resolvedStyle.backgroundColor.color,
                 resolvedStyle.backgroundColor.color,
+                resolvedStyle.backgroundColor.color,
               ],
               tileMode: .mirror,
             ),
           ),
         ),
       ),
-      Column(
-        mainAxisSize: .min,
-        children: [footer],
-      ),
+      Column(mainAxisSize: .min, children: [footer]),
     ],
   );
 
-  Widget _header(Widget header) => SafeArea(
-    bottom: false,
-    child: Padding(
-      padding: .symmetric(horizontal: context.themeData.spacing.md),
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: MediaQuery.of(context).size.height * 0.08,
-        ),
-        child: header,
-      ),
-    ),
-  );
+  Widget _header(Widget header, FlintUiScaffoldStyle resolvedStyle) => header;
 }

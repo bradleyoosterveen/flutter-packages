@@ -55,7 +55,7 @@ extension DarkTheme on FlintUiThemeData {
         primary: FlintUiScaffoldStyle(
           backgroundColor: FlintUiColors.black.shade950,
           floatingHeaderBackgroundColor: FlintUiColors.black,
-          horizontalInset: FlintUiThemeData._spacing.md,
+          horizontalInset: FlintUiThemeData._spacing.sm,
         ),
       ),
       textStyles: FlintUiThemeData._coloredTextStyles(

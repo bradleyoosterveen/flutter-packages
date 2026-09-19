@@ -68,42 +68,38 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => ListItemScreen.push(context),
             ),
             FlintUiCard(
-              child: FlintUiText('Scaffold (body only)'),
-              onPressed: () => ScaffoldScreen.push(context, .bodyOnly),
+              child: FlintUiText('Scaffold - Only a body, implemented as a column with 40 items for scrolling.'),
+              onPressed: () => ScaffoldScreen.push(context, .a),
             ),
             FlintUiCard(
-              child: FlintUiText('Scaffold (centered body)'),
-              onPressed: () => ScaffoldScreen.push(context, .centeredBody),
-            ),
-            FlintUiCard(
-              child: FlintUiText('Scaffold (top aligned body)'),
-              onPressed: () => ScaffoldScreen.push(context, .topAlignedBody),
-            ),
-            FlintUiCard(
-              child: FlintUiText('Scaffold (app bar and body)'),
-              onPressed: () => ScaffoldScreen.push(context, .appBarAndBody),
-            ),
-            FlintUiCard(
-              child: FlintUiText('Scaffold (app bar, body and action bar)'),
-              onPressed: () => ScaffoldScreen.push(context, .appBarAndBodyAndActionBar),
+              child: FlintUiText('Scaffold - Only a body, aligned to the center with one small piece of text.'),
+              onPressed: () => ScaffoldScreen.push(context, .b),
             ),
             FlintUiCard(
               child: FlintUiText(
-                'Scaffold (app bar, body and bottom navigation bar)',
+                'Scaffold - A body and a header, aligned to the center with one small piece of text.',
               ),
-              onPressed: () => ScaffoldScreen.push(
-                context,
-                .appBarAndBodyAndBottomNavigationBar,
-              ),
+              onPressed: () => ScaffoldScreen.push(context, .c),
             ),
             FlintUiCard(
-              child: FlintUiText(
-                'Scaffold (app bar, body, action bar and floating header)',
-              ),
-              onPressed: () => ScaffoldScreen.push(
-                context,
-                .appBarAndBodyAndActionBarAndFloatingHeader,
-              ),
+              child: FlintUiText('Scaffold - Only a body, aligned to the top with one small piece of text.'),
+              onPressed: () => ScaffoldScreen.push(context, .d),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold - A header, body with 4 (non scrolling) items and footer'),
+              onPressed: () => ScaffoldScreen.push(context, .e),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold - A header, body with 20 (scrolling) items and footer'),
+              onPressed: () => ScaffoldScreen.push(context, .f),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold - A header, body with 20 (scrolling) items (in a grid) and footer'),
+              onPressed: () => ScaffoldScreen.push(context, .g),
+            ),
+            FlintUiCard(
+              child: FlintUiText('Scaffold - A header, body with 2 + 1 non-items with fill remaining and footer'),
+              onPressed: () => ScaffoldScreen.push(context, .h),
             ),
             FlintUiCard(
               child: FlintUiText('Text'),

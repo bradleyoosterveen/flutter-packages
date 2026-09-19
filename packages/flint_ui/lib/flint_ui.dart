@@ -11,6 +11,7 @@ export 'src/flex.dart';
 export 'src/gap.dart';
 export 'src/informational_layout.dart';
 export 'src/pop_scope.dart';
+export 'src/scaffold_page.dart';
 export 'src/spinning_loader.dart';
 export 'src/theme/color.dart';
 export 'src/theme/colors.dart';
