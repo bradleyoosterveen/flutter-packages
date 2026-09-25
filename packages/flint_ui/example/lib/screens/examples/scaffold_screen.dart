@@ -59,6 +59,7 @@ class ScaffoldScreen extends StatelessWidget {
     ),
     .g => FlintUiScaffold(
       header: _header(context),
+      bodyFillRemaining: false,
       body: GridView.count(
         padding: .zero,
         shrinkWrap: true,
