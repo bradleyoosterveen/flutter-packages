@@ -10,6 +10,7 @@ enum ScaffoldScreenVariant {
   f,
   g,
   h,
+  i,
 }
 
 class ScaffoldScreen extends StatelessWidget {
@@ -87,6 +88,12 @@ class ScaffoldScreen extends StatelessWidget {
           ),
         ],
       ),
+      footer: _footer,
+    ),
+    .i => FlintUiScaffold(
+      header: _header(context),
+      body: FlintUiCardGroup(cards: _listItems(context, 4)),
+      background: Placeholder(),
       footer: _footer,
     ),
   };

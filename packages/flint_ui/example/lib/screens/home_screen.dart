@@ -102,6 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => ScaffoldScreen.push(context, .h),
             ),
             FlintUiCard(
+              child: FlintUiText('Scaffold - With background widget (Placeholder)'),
+              onPressed: () => ScaffoldScreen.push(context, .i),
+            ),
+            FlintUiCard(
               child: FlintUiText('Text'),
               onPressed: () => TextScreen.push(context),
             ),

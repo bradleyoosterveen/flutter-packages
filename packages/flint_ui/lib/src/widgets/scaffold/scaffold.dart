@@ -10,6 +10,7 @@ class FlintUiScaffold extends StatefulWidget {
     required this.body,
     this.header,
     this.footer,
+    this.background,
     this.style = _defaultStyleBuilder,
     this.bodyFillRemaining = true,
     super.key,
@@ -18,6 +19,7 @@ class FlintUiScaffold extends StatefulWidget {
   final Widget body;
   final Widget? header;
   final Widget? footer;
+  final Widget? background;
   final FlintUiScaffoldStyle Function(FlintUiScaffoldStyle style) style;
   final bool bodyFillRemaining;
 
@@ -34,11 +36,16 @@ class _FlintUiScaffoldState extends State<FlintUiScaffold> {
 
     final resolvedStyle = widget.style(DefaultFlintUiScaffoldStyle.of(context));
 
+    final background = widget.background;
+
     return Scaffold(
       backgroundColor: resolvedStyle.backgroundColor.color,
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
+          if (background != null) ...[
+            Positioned.fill(child: background),
+          ],
           Positioned.fill(
             child: FlintUiFlex.column(
               crossAxisAlignment: .stretch,
