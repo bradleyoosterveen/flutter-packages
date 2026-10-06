@@ -63,6 +63,11 @@ class Buttons extends StatelessWidget {
         child: FlintUiText("Button (ghost)"),
       ),
       FlintUiButton(
+        style: (_) => context.themeData.buttonStyles.danger,
+        onPressed: () {},
+        child: FlintUiText("Button (danger)"),
+      ),
+      FlintUiButton(
         style: (_) => context.themeData.buttonStyles.primary,
         onPressed: () {},
         child: FlintUiFlex.row(

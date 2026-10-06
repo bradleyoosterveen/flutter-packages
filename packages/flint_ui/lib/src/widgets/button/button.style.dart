@@ -48,11 +48,13 @@ class FlintUiButtonStyles {
   final FlintUiButtonStyle secondary;
   final FlintUiButtonStyle outline;
   final FlintUiButtonStyle ghost;
+  final FlintUiButtonStyle danger;
 
   const FlintUiButtonStyles({
     required this.primary,
     required this.secondary,
     required this.outline,
     required this.ghost,
+    required this.danger,
   });
 }

@@ -38,6 +38,12 @@ extension LightTheme on FlintUiThemeData {
           borderColor: FlintUiColors.transparent,
           borderRadius: FlintUiThemeData._baseButtonBorderRadius,
         ),
+        danger: FlintUiButtonStyle(
+          backgroundColor: FlintUiColors.red,
+          foregroundColor: FlintUiColors.black,
+          borderColor: FlintUiColors.transparent,
+          borderRadius: FlintUiThemeData._baseButtonBorderRadius,
+        ),
       ),
       cardStyles: FlintUiCardStyles(
         filled: FlintUiCardStyle(
