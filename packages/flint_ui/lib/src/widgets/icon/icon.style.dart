@@ -11,9 +11,7 @@ class DefaultFlintUiIconStyle extends InheritedWidget {
 
   static FlintUiIconStyle of(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<DefaultFlintUiIconStyle>()?.style ??
-      context.themeData.iconStyles.fromTextStyle(
-        context.themeData.textStyles.bodyMedium,
-      );
+      context.themeData.iconStyles.fromTextStyle(DefaultFlintUiTextStyle.of(context));
 
   @override
   bool updateShouldNotify(covariant DefaultFlintUiIconStyle oldWidget) => !(style == oldWidget.style);
