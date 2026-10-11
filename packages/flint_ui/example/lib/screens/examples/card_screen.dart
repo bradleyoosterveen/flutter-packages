@@ -145,6 +145,75 @@ class CardScreen extends StatelessWidget {
             ),
           ),
         ),
+        // Horizontal card group example
+        FlintUiCardGroup(
+          direction: Axis.horizontal,
+          cards: [
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Text('Horizontal 1'),
+            ),
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Text('Horizontal 2'),
+            ),
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Text('Horizontal 3'),
+            ),
+          ],
+        ),
+        // Nested card group example
+        FlintUiCardGroup(
+          cards: [
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Text('Parent Card 1'),
+            ),
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Column(
+                crossAxisAlignment: .stretch,
+                children: [
+                  FlintUiCard(
+                    style: (_) => context.themeData.cardStyles.outline,
+                    size: .small,
+                    child: Text('Not a direct nest'),
+                  ),
+                  FlintUiCard(
+                    style: (_) => context.themeData.cardStyles.outline,
+                    size: .small,
+                    child: Text('Not a direct nest'),
+                  ),
+                  FlintUiCardGroup(
+                    cards: [
+                      FlintUiCard(
+                        style: (_) => context.themeData.cardStyles.filled,
+                        size: .medium,
+                        child: Text('Parent Card 1'),
+                      ),
+                      FlintUiCard(
+                        style: (_) => context.themeData.cardStyles.filled,
+                        size: .medium,
+                        child: Text('Parent Card 3'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            FlintUiCard(
+              style: (_) => context.themeData.cardStyles.filled,
+              size: .medium,
+              child: Text('Parent Card 3'),
+            ),
+          ],
+        ),
       ],
     ),
   );

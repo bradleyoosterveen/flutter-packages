@@ -8,10 +8,12 @@ class _FlintUiCardGroupItemData extends InheritedWidget {
     required super.child,
     required this.isFirst,
     required this.isLast,
+    required this.isHorizontal,
   });
 
   final bool isFirst;
   final bool isLast;
+  final bool isHorizontal;
 
   static _FlintUiCardGroupItemData? maybeOf(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_FlintUiCardGroupItemData>();
@@ -23,24 +25,45 @@ class _FlintUiCardGroupItemData extends InheritedWidget {
 class FlintUiCardGroup extends StatelessWidget {
   const FlintUiCardGroup({
     required this.cards,
+    this.direction = Axis.vertical,
     super.key,
   });
 
   final List<Widget> cards;
+  final Axis direction;
 
   @override
-  Widget build(BuildContext context) => FlintUiFlex.column(
-    divider: FlintUiGap.column(context.themeData.spacing.xxxs),
-    crossAxisAlignment: .stretch,
-    children: List.generate(
-      cards.length,
-      (index) => _FlintUiCardGroupItemData(
-        isFirst: index == 0,
-        isLast: index + 1 == cards.length,
-        child: cards[index],
-      ),
-    ),
-  );
+  Widget build(BuildContext context) {
+    final isHorizontal = direction == Axis.horizontal;
+    final flexWidget = isHorizontal
+        ? FlintUiFlex.row(
+            divider: FlintUiGap.row(context.themeData.spacing.xxxs),
+            children: List.generate(
+              cards.length,
+              (index) => _FlintUiCardGroupItemData(
+                isFirst: index == 0,
+                isLast: index + 1 == cards.length,
+                isHorizontal: true,
+                child: cards[index],
+              ),
+            ),
+          )
+        : FlintUiFlex.column(
+            divider: FlintUiGap.column(context.themeData.spacing.xxxs),
+            crossAxisAlignment: .stretch,
+            children: List.generate(
+              cards.length,
+              (index) => _FlintUiCardGroupItemData(
+                isFirst: index == 0,
+                isLast: index + 1 == cards.length,
+                isHorizontal: false,
+                child: cards[index],
+              ),
+            ),
+          );
+
+    return flexWidget;
+  }
 }
 
 class FlintUiCard extends StatelessWidget {
@@ -80,10 +103,21 @@ class FlintUiCard extends StatelessWidget {
     ),
   };
 
+  bool _isDirectChildOfCardGroup(BuildContext context) {
+    bool result = false;
+    context.visitAncestorElements((element) {
+      result = element.widget is _FlintUiCardGroupItemData;
+      return false;
+    });
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isDirectChildOfCardGroup = _isDirectChildOfCardGroup(context);
+
     final resolvedStyle = style(DefaultFlintUiCardStyle.of(context));
-    final groupItemData = _FlintUiCardGroupItemData.maybeOf(context);
+    final groupItemData = isDirectChildOfCardGroup ? _FlintUiCardGroupItemData.maybeOf(context) : null;
 
     final defaultBorderRadius = BorderRadius.circular(resolvedStyle.borderRadius);
 
@@ -91,8 +125,18 @@ class FlintUiCard extends StatelessWidget {
       _FlintUiCardGroupItemData data => switch (Never) {
         _ when data.isFirst && data.isLast => defaultBorderRadius,
         _ when !data.isLast && !data.isFirst => BorderRadiusGeometry.circular(0),
-        _ when data.isFirst => BorderRadiusGeometry.vertical(top: .circular(resolvedStyle.borderRadius)),
-        _ when data.isLast => BorderRadiusGeometry.vertical(bottom: .circular(resolvedStyle.borderRadius)),
+        _ when data.isHorizontal && data.isFirst => BorderRadiusGeometry.horizontal(
+          left: .circular(resolvedStyle.borderRadius),
+        ),
+        _ when data.isHorizontal && data.isLast => BorderRadiusGeometry.horizontal(
+          right: .circular(resolvedStyle.borderRadius),
+        ),
+        _ when !data.isHorizontal && data.isFirst => BorderRadiusGeometry.vertical(
+          top: .circular(resolvedStyle.borderRadius),
+        ),
+        _ when !data.isHorizontal && data.isLast => BorderRadiusGeometry.vertical(
+          bottom: .circular(resolvedStyle.borderRadius),
+        ),
         _ => defaultBorderRadius,
       },
       _ => defaultBorderRadius,
