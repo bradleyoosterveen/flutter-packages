@@ -103,21 +103,28 @@ class FlintUiCard extends StatelessWidget {
     ),
   };
 
-  bool _isDirectChildOfCardGroup(BuildContext context) {
-    bool result = false;
+  _FlintUiCardGroupItemData? _getGroupItemData(BuildContext context) {
+    bool? foundTypeIsCard;
+
     context.visitAncestorElements((element) {
-      result = element.widget is _FlintUiCardGroupItemData;
-      return false;
+      if (element.widget is FlintUiCard) {
+        foundTypeIsCard = true;
+        return false;
+      }
+      if (element.widget is _FlintUiCardGroupItemData) {
+        foundTypeIsCard = false;
+        return false;
+      }
+      return true;
     });
-    return result;
+
+    return foundTypeIsCard == false ? _FlintUiCardGroupItemData.maybeOf(context) : null;
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDirectChildOfCardGroup = _isDirectChildOfCardGroup(context);
-
     final resolvedStyle = style(DefaultFlintUiCardStyle.of(context));
-    final groupItemData = isDirectChildOfCardGroup ? _FlintUiCardGroupItemData.maybeOf(context) : null;
+    final groupItemData = _getGroupItemData(context);
 
     final defaultBorderRadius = BorderRadius.circular(resolvedStyle.borderRadius);
 

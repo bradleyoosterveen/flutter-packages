@@ -192,15 +192,19 @@ class CardScreen extends StatelessWidget {
                   ),
                   FlintUiCardGroup(
                     cards: [
-                      FlintUiCard(
-                        style: (_) => context.themeData.cardStyles.filled,
-                        size: .medium,
-                        child: Text('Parent Card 1'),
+                      Container(
+                        color: FlintUiColors.green.alpha05.color,
+                        child: FlintUiCard(
+                          size: .medium,
+                          child: Text('Parent Card 1, wrapped by a Container'),
+                        ),
                       ),
-                      FlintUiCard(
-                        style: (_) => context.themeData.cardStyles.filled,
-                        size: .medium,
-                        child: Text('Parent Card 3'),
+                      Container(
+                        color: FlintUiColors.green.alpha05.color,
+                        child: FlintUiCard(
+                          size: .medium,
+                          child: Text('Parent Card 3, wrapped by a Container'),
+                        ),
                       ),
                     ],
                   ),
