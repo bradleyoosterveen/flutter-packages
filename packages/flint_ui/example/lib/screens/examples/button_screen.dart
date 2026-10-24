@@ -160,6 +160,30 @@ class Buttons extends StatelessWidget {
           ],
         ),
       ),
+      SingleChildScrollView(
+        clipBehavior: .none,
+        scrollDirection: .horizontal,
+        child: FlintUiButtonGroup(
+          buttons: [
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              child: FlintUiText("Button (primary, small, grouped)"),
+            ),
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              child: FlintUiText("Button (primary, small, grouped)"),
+            ),
+            FlintUiButton(
+              size: .small,
+              onPressed: () {},
+              style: (_) => context.themeData.buttonStyles.danger,
+              child: FlintUiText("Button (primary, small, grouped)"),
+            ),
+          ],
+        ),
+      ),
     ],
   );
 }

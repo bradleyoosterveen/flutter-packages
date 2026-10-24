@@ -4,6 +4,42 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 part 'button.style.dart';
 
+class _FlintUiButtonGroupItemData extends InheritedWidget {
+  const _FlintUiButtonGroupItemData({
+    required super.child,
+    required this.isFirst,
+    required this.isLast,
+  });
+
+  final bool isFirst;
+  final bool isLast;
+
+  @override
+  bool updateShouldNotify(_FlintUiButtonGroupItemData old) => true;
+}
+
+class FlintUiButtonGroup extends StatelessWidget {
+  const FlintUiButtonGroup({
+    required this.buttons,
+    super.key,
+  });
+
+  final List<Widget> buttons;
+
+  @override
+  Widget build(BuildContext context) => FlintUiFlex.row(
+    divider: FlintUiGap.row(context.themeData.spacing.xxxs),
+    children: List.generate(
+      buttons.length,
+      (index) => _FlintUiButtonGroupItemData(
+        isFirst: index == 0,
+        isLast: index + 1 == buttons.length,
+        child: buttons[index],
+      ),
+    ),
+  );
+}
+
 class DefaultFlintUiButtonWrapperBuilder extends InheritedWidget {
   const DefaultFlintUiButtonWrapperBuilder({
     required this.builder,
@@ -146,10 +182,28 @@ class _FlintUiButtonState extends State<FlintUiButton> {
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = widget.style(DefaultFlintUiButtonStyle.of(context));
+    final groupItemData = context.findInheritedWidgetIfNotIn<_FlintUiButtonGroupItemData, FlintUiButton>();
 
     final defaultTextStyle = _textStyle.copyWith(
       color: resolvedStyle.foregroundColor,
     );
+
+    final defaultBorderRadius = BorderRadius.circular(resolvedStyle.borderRadius);
+
+    final BorderRadiusGeometry borderRadius = switch (groupItemData) {
+      _FlintUiButtonGroupItemData data => switch (Never) {
+        _ when data.isFirst && data.isLast => defaultBorderRadius,
+        _ when !data.isLast && !data.isFirst => BorderRadiusGeometry.circular(0),
+        _ when data.isFirst => BorderRadiusGeometry.horizontal(
+          left: .circular(resolvedStyle.borderRadius),
+        ),
+        _ when data.isLast => BorderRadiusGeometry.horizontal(
+          right: .circular(resolvedStyle.borderRadius),
+        ),
+        _ => defaultBorderRadius,
+      },
+      _ => defaultBorderRadius,
+    };
 
     final wrapperBuilder = DefaultFlintUiButtonWrapperBuilder.maybeOf(context)?.builder ?? (_, button) => button;
 
@@ -169,7 +223,7 @@ class _FlintUiButtonState extends State<FlintUiButton> {
               clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 color: resolvedStyle.backgroundColor.color,
-                borderRadius: .circular(resolvedStyle.borderRadius),
+                borderRadius: borderRadius,
                 border: .all(
                   color: resolvedStyle.borderColor.color,
                   width: 1,

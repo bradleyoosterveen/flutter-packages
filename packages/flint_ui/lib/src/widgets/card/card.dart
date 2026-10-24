@@ -15,9 +15,6 @@ class _FlintUiCardGroupItemData extends InheritedWidget {
   final bool isLast;
   final bool isHorizontal;
 
-  static _FlintUiCardGroupItemData? maybeOf(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_FlintUiCardGroupItemData>();
-
   @override
   bool updateShouldNotify(_FlintUiCardGroupItemData old) => true;
 }
@@ -103,28 +100,10 @@ class FlintUiCard extends StatelessWidget {
     ),
   };
 
-  _FlintUiCardGroupItemData? _getGroupItemData(BuildContext context) {
-    bool? foundTypeIsCard;
-
-    context.visitAncestorElements((element) {
-      if (element.widget is FlintUiCard) {
-        foundTypeIsCard = true;
-        return false;
-      }
-      if (element.widget is _FlintUiCardGroupItemData) {
-        foundTypeIsCard = false;
-        return false;
-      }
-      return true;
-    });
-
-    return foundTypeIsCard == false ? _FlintUiCardGroupItemData.maybeOf(context) : null;
-  }
-
   @override
   Widget build(BuildContext context) {
     final resolvedStyle = style(DefaultFlintUiCardStyle.of(context));
-    final groupItemData = _getGroupItemData(context);
+    final groupItemData = context.findInheritedWidgetIfNotIn<_FlintUiCardGroupItemData, FlintUiCard>();
 
     final defaultBorderRadius = BorderRadius.circular(resolvedStyle.borderRadius);
 
