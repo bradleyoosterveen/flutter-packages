@@ -113,6 +113,7 @@ class FlintUiThemeData with Diagnosticable {
   static final double _baseFieldBorderRadius = 16;
 
   final Brightness brightness;
+  final FlintUiThemeData inverse;
   final FlintUiSpacing spacing;
   final FlintUiBottomSheetStyles bottomSheetStyles;
   final FlintUiButtonStyles buttonStyles;
@@ -125,6 +126,7 @@ class FlintUiThemeData with Diagnosticable {
 
   const FlintUiThemeData._({
     required this.brightness,
+    required this.inverse,
     required this.spacing,
     required this.bottomSheetStyles,
     required this.buttonStyles,
