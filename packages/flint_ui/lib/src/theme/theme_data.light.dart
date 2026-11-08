@@ -6,7 +6,6 @@ extension LightTheme on FlintUiThemeData {
 
     return FlintUiThemeData._(
       brightness: .light,
-      inverse: DarkTheme._data(context),
       spacing: FlintUiThemeData._spacing,
       bottomSheetStyles: FlintUiBottomSheetStyles(
         primary: FlintUiBottomSheetStyle(
