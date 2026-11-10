@@ -37,6 +37,7 @@ class FlintUiAppBar extends StatelessWidget {
             children: [
               Expanded(
                 child: FlintUiFlex.row(
+                  mainAxisSize: .min,
                   divider: FlintUiGap.row(context.themeData.spacing.xs),
                   children: [
                     if (onGoBack != null) ...[
@@ -61,8 +62,9 @@ class FlintUiAppBar extends StatelessWidget {
                   style: (_) => context.themeData.textStyles.titleMedium,
                 ),
               ],
-              Expanded(
+              _maybeWrapInExpanded(
                 child: FlintUiFlex.row(
+                  mainAxisSize: .min,
                   mainAxisAlignment: MainAxisAlignment.end,
                   divider: FlintUiGap.row(context.themeData.spacing.sm),
                   children: [
@@ -89,4 +91,9 @@ class FlintUiAppBar extends StatelessWidget {
       ),
     );
   }
+
+  Widget _maybeWrapInExpanded({required Widget child}) => switch (titleText == null) {
+    true => child,
+    false => Expanded(child: child),
+  };
 }
