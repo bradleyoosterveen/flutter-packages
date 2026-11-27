@@ -1,6 +1,6 @@
 name: flint_ui
 resolution: workspace
-version: 0.4.2
+version: 0.5.0
 environment:
   sdk: ^3.13.0
 dependencies:
