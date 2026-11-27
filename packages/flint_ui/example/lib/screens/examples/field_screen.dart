@@ -1,5 +1,5 @@
 import 'package:flint_ui/flint_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class FieldScreen extends StatelessWidget {
   const FieldScreen({super.key});

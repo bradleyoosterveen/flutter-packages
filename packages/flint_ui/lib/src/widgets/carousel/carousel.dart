@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 class FlintUiCarousel extends StatefulWidget {
   const FlintUiCarousel({required this.items, super.key});

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class FlintUiSpinningLoader extends StatelessWidget {
   const FlintUiSpinningLoader({super.key});

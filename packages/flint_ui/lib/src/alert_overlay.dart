@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flint_ui/flint_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class FlintUiAlertOverlayController extends ChangeNotifier {

@@ -1,6 +1,6 @@
 import 'package:flint_ui/flint_ui.dart';
 import 'package:flint_ui/gen/assets.gen.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 part 'icon.style.dart';

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 
 class FlintUiApp extends StatelessWidget {
   const FlintUiApp({required this.child, required this.themeData, super.key});

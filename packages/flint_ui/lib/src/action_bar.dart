@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flint_ui/flint_ui.dart';
+import 'package:flutter/widgets.dart';
 
 class FlintUiActionBar extends StatelessWidget {
   const FlintUiActionBar({required this.actions, super.key});

@@ -1,6 +1,6 @@
 import 'package:flint_ui/flint_ui.dart';
 import 'package:flint_ui/src/widgets/bottom_sheet/bottom_sheet.style.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class FlintUiBottomSheet extends StatelessWidget {
   static FlintUiBottomSheetStyle _defaultStyleBuilder(FlintUiBottomSheetStyle style) => style;

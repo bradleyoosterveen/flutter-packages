@@ -1,7 +1,7 @@
 import 'package:flint_ui/flint_ui.dart';
 import 'package:flint_ui/src/widgets/bottom_sheet/bottom_sheet.style.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 part 'theme_data.dark.dart';
 part 'theme_data.light.dart';
